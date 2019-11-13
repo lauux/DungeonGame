@@ -20,12 +20,12 @@ public class KeyInput extends KeyAdapter {
 
             if (tempObject.getId() == ObjectId.Player) {
                 if (key == KeyEvent.VK_RIGHT)
-                    tempObject.setVelX(0.004f);
+                    tempObject.setVelX(4);
                 if (key == KeyEvent.VK_LEFT)
-                    tempObject.setVelX(-0.004f);
+                    tempObject.setVelX(-4);
                 if (key == KeyEvent.VK_UP && !tempObject.isJumping()) {
                     tempObject.setJumping(true);
-                    tempObject.setVelY(-0.02f);
+                    tempObject.setVelY(-10);
                 }
 
             }

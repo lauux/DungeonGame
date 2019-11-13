@@ -2,7 +2,9 @@ package com.softeng2red.dungeon.objects;
 
 import com.softeng2red.dungeon.framework.GameObject;
 import com.softeng2red.dungeon.framework.ObjectId;
+import com.softeng2red.dungeon.window.Game;
 import com.softeng2red.dungeon.window.Handler;
+import com.softeng2red.dungeon.framework.Texture;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -11,10 +13,12 @@ public class Player extends GameObject {
 
     private float width = 32, height = 64;
 
-    private float gravity = 0.000001f;
-    private final float MAX_SPEED = 0.005f;
+    private float gravity = 0.5f;
+    private final float MAX_SPEED = 10;
 
     private Handler handler;
+    Texture tex = Game.getInstance();
+
 
     public Player(float x, float y, Handler handler, ObjectId id) {
         super(x, y, id);
@@ -67,14 +71,9 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
         g.setColor(Color.red);
-        g.fillRect((int)x, (int)y, (int)width, (int)height);
+        g.drawImage(tex.player[0],(int)x,(int)y,32,64, null);
 
-        Graphics2D g2d = (Graphics2D) g;
-//        g.setColor(Color.red);
-//        g2d.draw(getBounds());
-//        g2d.draw(getBoundsRight());
-//        g2d.draw(getBoundsLeft());
-//        g2d.draw(getBoundsTop());
+
     }
 
     public Rectangle getBounds() {
