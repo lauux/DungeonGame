@@ -42,6 +42,7 @@ public class Player extends GameObject {
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
+            //Detecting collisions with Blocks
             if (tempObject.getId() == ObjectId.Block) {
                 // top
                 if (getBoundsTop().intersects(tempObject.getBounds())) {
@@ -65,6 +66,58 @@ public class Player extends GameObject {
                 if (getBoundsLeft().intersects(tempObject.getBounds())) {
                     x = tempObject.getX() + width;
                 }
+            }
+            //Detecting collisions with Moving_Blocks
+            if (tempObject.getId() == ObjectId.Moving_Block) {
+                // top
+                if (getBoundsTop().intersects(tempObject.getBounds())) {
+                    y = tempObject.getY() + (height/2);
+                    velY = 0;
+                }
+                // bottom
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    y = tempObject.getY() - height;
+                    velY = 0;
+                    falling = false;
+                    jumping = false;
+                } else {
+                    falling = true;
+                }
+                // right
+                if (getBoundsRight().intersects(tempObject.getBounds())) {
+                    x = tempObject.getX() - width;
+                }
+                // left
+                if (getBoundsLeft().intersects(tempObject.getBounds())) {
+                    x = tempObject.getX() + width;
+                }
+            }
+            if (tempObject.getId() == ObjectId.Villain) {
+                // top
+                /*
+                if (getBoundsTop().intersects(tempObject.getBounds())) {
+                    handler.object.remove(i);
+                }*/
+
+
+                // bottom
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    handler.object.remove(i);
+
+                }
+                // right
+                if (getBoundsRight().intersects(tempObject.getBounds())) {
+                    handler.object.remove(216);
+                }
+                // left
+                if (getBoundsLeft().intersects(tempObject.getBounds())) {
+                    handler.object.remove(216);
+                }
+
+                }
+            if (tempObject.getId() == ObjectId.Player) {
+                System.out.print(i);
+
             }
         }
     }
