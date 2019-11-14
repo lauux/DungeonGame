@@ -116,7 +116,7 @@ public class Player extends GameObject {
 
                 }
             if (tempObject.getId() == ObjectId.Player) {
-                System.out.print(i);
+                //System.out.print(i);
 
             }
         }
