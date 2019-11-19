@@ -10,3 +10,6 @@ This is a github repo for the coursework.
 - 13/11/19
   Updates the new version with camera
   by: Matt
+- 19/11/19
+  Updates the new version with beers and obstacles
+  by: Corey
