@@ -114,7 +114,8 @@ public class Player extends GameObject {
                     handler.object.remove(216);
                 }
 
-                }
+            }
+
             if (tempObject.getId() == ObjectId.Player) {
 
                 //System.out.print(i);
