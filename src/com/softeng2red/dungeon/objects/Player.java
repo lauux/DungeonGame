@@ -116,8 +116,54 @@ public class Player extends GameObject {
 
                 }
             if (tempObject.getId() == ObjectId.Player) {
+
                 //System.out.print(i);
 
+            }
+           // Detecting collisions with Beers
+            if (tempObject.getId() == ObjectId.Beer) {
+                // top
+                if (getBoundsTop().intersects(tempObject.getBounds())) {
+                    handler.removeObject(tempObject);
+                }
+                // bottom
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    handler.removeObject(tempObject);
+                }
+                // right
+                if (getBoundsRight().intersects(tempObject.getBounds())) {
+                    handler.removeObject(tempObject);
+                }
+                // left
+                if (getBoundsLeft().intersects(tempObject.getBounds())) {
+                    handler.removeObject(tempObject);
+                }
+            }
+
+            // Detecting collisions with Obstacles
+            if (tempObject.getId() == ObjectId.Obstacle) {
+                // top
+                if (getBoundsTop().intersects(tempObject.getBounds())) {
+                    y = tempObject.getY() + (height/2);
+                    velY = 0;
+                }
+                // bottom
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    y = tempObject.getY() - height;
+                    velY = 0;
+                    falling = false;
+                    jumping = false;
+                } else {
+                    falling = true;
+                }
+                // right
+                if (getBoundsRight().intersects(tempObject.getBounds())) {
+                    x = tempObject.getX() - width;
+                }
+                // left
+                if (getBoundsLeft().intersects(tempObject.getBounds())) {
+                    x = tempObject.getX() + width;
+                }
             }
         }
     }

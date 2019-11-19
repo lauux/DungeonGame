@@ -3,10 +3,8 @@ package com.softeng2red.dungeon.window;
 import com.softeng2red.dungeon.framework.KeyInput;
 import com.softeng2red.dungeon.framework.ObjectId;
 import com.softeng2red.dungeon.framework.Texture;
-import com.softeng2red.dungeon.objects.Player;
-import com.softeng2red.dungeon.objects.Block;
-import com.softeng2red.dungeon.objects.Villain;
-import com.softeng2red.dungeon.objects.Moving_Block;
+import com.softeng2red.dungeon.objects.*;
+
 import java.awt.image.BufferedImage;
 
 import java.awt.*;
@@ -140,6 +138,10 @@ public class Game extends Canvas implements Runnable {
                  if (red == 251 && blue == 255 & green == 0) handler.addObject((new Moving_Block(xx*32,yy*32, 1, ObjectId.Moving_Block)));
                  //Red on Paint S (255,0,0)
                  if (red == 251 && blue == 7 & green == 0) handler.addObject((new Villain(xx*32,yy*32, ObjectId.Villain)));
+                 // Yellow on Paint S (229,229,92)
+                 if (red == 229 && blue == 92 & green == 229) handler.addObject((new Beer(xx*32,yy*32, ObjectId.Beer)));
+                 // Brown on Paint S (102,0,0)
+                 if (red == 102 && blue == 0 & green == 0) handler.addObject((new Obstacle(xx*32,yy*32, ObjectId.Obstacle)));
 
 
 
