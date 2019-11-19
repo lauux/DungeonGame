@@ -11,8 +11,7 @@ This is a github repo for the coursework.
   Updates the new version with camera
   by: Matt
 - 19/11/19
-  Updates the new version with beers and obstacles
-  by: Corey
-- 19/11/19
-  Updates the new version with updated player image and villain
+  1. Updates the new version with beers and obstacles
+  2. Updates the new version with villain
+  3. Updates the new version with updated images of player and playground
   by: Corey
