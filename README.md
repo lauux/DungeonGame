@@ -13,3 +13,6 @@ This is a github repo for the coursework.
 - 19/11/19
   Updates the new version with beers and obstacles
   by: Corey
+- 19/11/19
+  Updates the new version with updated player image and villain
+  by: Corey
