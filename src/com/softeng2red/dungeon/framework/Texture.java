@@ -23,7 +23,7 @@ public class Texture {
     public Texture(){
         BufferedImageLoader loader = new BufferedImageLoader();
         try{
-            block_sheet = loader.loadImage("/block_sheet.png");
+            block_sheet = loader.loadImage("/blocks_sheet.png");
             player_sheet = loader.loadImage("/player_sheet1.png");
             health_sheet = loader.loadImage("/health_sheet.png");
             obstacle_sheet = loader.loadImage("/Obstacle_sheet.png");
