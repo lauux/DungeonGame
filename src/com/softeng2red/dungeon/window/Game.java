@@ -40,6 +40,9 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         LoadImageLevel(level);
 
+        // temporarily initialize health, need to improve later
+        handler.addObject(new Health(650 ,20, handler,ObjectId.Health));
+
         this.addKeyListener(new KeyInput(handler));
    }
 
@@ -57,7 +60,8 @@ public class Game extends Canvas implements Runnable {
         init();
         this.requestFocus();
         long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
+        // decrease from 60 to 40 due to health object, need to improve later
+        double amountOfTicks =40.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();

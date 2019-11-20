@@ -1,11 +1,12 @@
 package com.softeng2red.dungeon.framework;
 import com.softeng2red.dungeon.window.BufferedImageLoader;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Texture {
 
-    SpriteSheet bs, ps, beers, obs, vs;
+    SpriteSheet bs, ps, beers, obs, vs, hs;
     private BufferedImage block_sheet = null;
     private BufferedImage player_sheet = null;
     private BufferedImage health_sheet = null;
@@ -18,6 +19,8 @@ public class Texture {
     public BufferedImage[] beer = new BufferedImage[1];
     public BufferedImage[] obstacle = new BufferedImage[1];
     public BufferedImage[] villain = new BufferedImage[1];
+    public BufferedImage[] health = new BufferedImage[2];
+
 
 
     public Texture(){
@@ -37,6 +40,7 @@ public class Texture {
         beers = new SpriteSheet(health_sheet);
         obs = new SpriteSheet(obstacle_sheet);
         vs = new SpriteSheet(villain_sheet);
+        hs = new SpriteSheet(health_sheet);
 
         getTextures();
 
@@ -51,6 +55,8 @@ public class Texture {
         beer[0] = beers.grabImage(1,3,32,32);
         obstacle[0] = obs.grabImage(1,1,32,32);
         villain[0] = vs.grabImage(1,1,32,32);
+        health[0] = hs.grabImage(1,1,32,32);
+        health[1] = hs.grabImage(1,2,32,32);
 
     }
 }

@@ -19,7 +19,6 @@ public class Player extends GameObject {
     private Handler handler;
     Texture tex = Game.getInstance();
 
-
     public Player(float x, float y, Handler handler, ObjectId id) {
         super(x, y, id);
         this.handler = handler;
@@ -41,6 +40,8 @@ public class Player extends GameObject {
     private void Collision(LinkedList<GameObject> object) {
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
+            // *need to refactor
+            GameObject healthObject = handler.object.get(0);
 
             //Detecting collisions with Blocks
             if (tempObject.getId() == ObjectId.Block) {
@@ -107,11 +108,17 @@ public class Player extends GameObject {
                 }
                 // right
                 if (getBoundsRight().intersects(tempObject.getBounds())) {
-                    handler.object.remove(216);
+                    handler.object.remove(tempObject);
+                    if (healthObject.healthNum>0) {
+                        healthObject.healthNum--;
+                    }
                 }
                 // left
                 if (getBoundsLeft().intersects(tempObject.getBounds())) {
-                    handler.object.remove(216);
+                    handler.object.remove(tempObject);
+                    if (healthObject.healthNum>0) {
+                        healthObject.healthNum--;
+                    }
                 }
 
             }
@@ -126,18 +133,30 @@ public class Player extends GameObject {
                 // top
                 if (getBoundsTop().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
+                    if (healthObject.healthNum<healthObject.maxHealth) {
+                        healthObject.healthNum++;
+                    }
                 }
                 // bottom
                 if (getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
+                    if (healthObject.healthNum<healthObject.maxHealth) {
+                        healthObject.healthNum++;
+                    }
                 }
                 // right
                 if (getBoundsRight().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
+                    if (healthObject.healthNum<healthObject.maxHealth) {
+                        healthObject.healthNum++;
+                    }
                 }
                 // left
                 if (getBoundsLeft().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
+                    if (healthObject.healthNum<healthObject.maxHealth) {
+                        healthObject.healthNum++;
+                    }
                 }
             }
 
