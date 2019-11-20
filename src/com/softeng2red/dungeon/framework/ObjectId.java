@@ -6,6 +6,7 @@ public enum ObjectId {
     Moving_Block(),
     Player(),
     Villain(),
-    Obstacle();
+    Obstacle(),
+    Health()
 
 }
