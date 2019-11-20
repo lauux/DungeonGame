@@ -12,7 +12,7 @@ import java.util.LinkedList;
 public class Player extends GameObject {
 
     private float width = 32, height = 64;
-
+    
     private float gravity = 0.5f;
     private final float MAX_SPEED = 10;
 
