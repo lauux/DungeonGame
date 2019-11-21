@@ -1,9 +1,12 @@
 package com.softeng2red.dungeon.framework;
 
 public enum ObjectId {
-    Player(),
+    Beer(),
     Block(),
     Moving_Block(),
-    Villain()
+    Player(),
+    Villain(),
+    Obstacle(),
+    Health()
 
 }

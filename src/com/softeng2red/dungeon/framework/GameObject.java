@@ -9,7 +9,9 @@ public abstract class GameObject {
     protected float velX = 0, velY = 0;
     protected boolean falling = true;
     protected boolean jumping = false;
-
+    public int healthNum = 3;
+    public int maxHealth  = 4;
+    public int minHealth  = 0;
 
 
     public GameObject(float x, float y, ObjectId id) {
@@ -72,5 +74,6 @@ public abstract class GameObject {
     public ObjectId getId() {
         return id;
     }
+
 
 }

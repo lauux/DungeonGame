@@ -3,10 +3,8 @@ package com.softeng2red.dungeon.window;
 import com.softeng2red.dungeon.framework.KeyInput;
 import com.softeng2red.dungeon.framework.ObjectId;
 import com.softeng2red.dungeon.framework.Texture;
-import com.softeng2red.dungeon.objects.Player;
-import com.softeng2red.dungeon.objects.Block;
-import com.softeng2red.dungeon.objects.Villain;
-import com.softeng2red.dungeon.objects.Moving_Block;
+import com.softeng2red.dungeon.objects.*;
+
 import java.awt.image.BufferedImage;
 
 import java.awt.*;
@@ -42,6 +40,9 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         LoadImageLevel(level);
 
+        // temporarily initialize health, need to improve later
+        handler.addObject(new Health(650 ,20, handler,ObjectId.Health));
+
         this.addKeyListener(new KeyInput(handler));
    }
 
@@ -59,7 +60,8 @@ public class Game extends Canvas implements Runnable {
         init();
         this.requestFocus();
         long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
+        // decrease from 60 to 40 due to health object, need to improve later
+        double amountOfTicks =40.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
@@ -140,6 +142,10 @@ public class Game extends Canvas implements Runnable {
                  if (red == 251 && blue == 255 & green == 0) handler.addObject((new Moving_Block(xx*32,yy*32, 1, ObjectId.Moving_Block)));
                  //Red on Paint S (255,0,0)
                  if (red == 251 && blue == 7 & green == 0) handler.addObject((new Villain(xx*32,yy*32, ObjectId.Villain)));
+                 // Yellow on Paint S (229,229,92)
+                 if (red == 229 && blue == 92 & green == 229) handler.addObject((new Beer(xx*32,yy*32, ObjectId.Beer)));
+                 // Brown on Paint S (102,0,0)
+                 if (red == 102 && blue == 0 & green == 0) handler.addObject((new Obstacle(xx*32,yy*32, ObjectId.Obstacle)));
 
 
 
