@@ -25,26 +25,27 @@ public class Health extends GameObject {
     /////////////////
     public void tick(LinkedList<GameObject> object)
     {
-        for(int i = 0; i < handler.object.size(); i ++)
+        /*for(int i = 0; i < handler.object.size(); i ++)
         {
             GameObject tempObject = handler.object.get(i);
             if (tempObject.getId() == ObjectId.Player) {
                 x = tempObject.getX();
                 y = tempObject.getY();
             }
-        }
+        }*/
     }
 
 
     public void render(Graphics g) {
-        // integrate
+        /*
             for (int i = 0; i < healthNum; i++) {
                 g.drawImage(tex.health[0], (int) x + 300 + i * 32, (int) y - 350, null);
-            }
+            }*/
     }
 
 
     public Rectangle getBounds() {
         return null;
     }
+
 }
