@@ -42,6 +42,11 @@ public class Health extends GameObject {
                 g.drawImage(tex.health[0], (int) x + 300 + i * 32, (int) y - 350, null);
             }
     }
+    public void postRender(Graphics g){
+        for (int i = 0; i < healthNum; i++) {
+            g.drawImage(tex.health[0], (int) x + 300 + i * 32, (int) y - 350, null);
+        }
+    }
 
 
     public Rectangle getBounds() {
