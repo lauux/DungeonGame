@@ -1,5 +1,6 @@
 package com.softeng2red.dungeon.framework;
 
+import com.softeng2red.dungeon.window.Game;
 import com.softeng2red.dungeon.window.Handler;
 
 import java.awt.event.KeyAdapter;
@@ -28,6 +29,11 @@ public class KeyInput extends KeyAdapter {
                     tempObject.setVelY(-10);
                 }
 
+            }
+
+            if (tempObject.getId() == ObjectId.Game_Over) {
+                if (key == KeyEvent.VK_SPACE)
+                    Game.newGame();
             }
         }
 
