@@ -72,7 +72,7 @@ public class Game extends Canvas implements Runnable {
         this.requestFocus();
         long lastTime = System.nanoTime();
         // decrease from 60 to 40 due to health object, need to improve later
-        double amountOfTicks =40.0;
+        double amountOfTicks = 40.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
@@ -103,12 +103,16 @@ public class Game extends Canvas implements Runnable {
 
         handler.tick();
         for (int i = 0; i<handler.object.size(); i++){
-            if(handler.object.get(i).getId() == ObjectId.Player){
-                cam.tick(handler.object.get(i));
+            GameObject tempObject = handler.object.get(i);
+            if(tempObject.getId() == ObjectId.Player){
+                cam.tick(tempObject);
+                GameObject healthObject = handler.object.get(0);
+                if (healthObject.healthNum == 0) {
+                    handler.object.clear();
+                    handler.addObject(new Game_Over(tempObject.getX()-((2*WIDTH)/9), tempObject.getY()-HEIGHT/5, ObjectId.Game_Over));
+                }
             }
         }
-
-
     }
 
     private void render() {
@@ -126,8 +130,8 @@ public class Game extends Canvas implements Runnable {
         g2d.translate(cam.getX(),cam.getY());
         handler.render(g);
         g2d.translate(-cam.getX(),-cam.getY());
-
         hud.draw((Graphics2D) g);
+
         /******************/
         g.dispose();
         bs.show();
