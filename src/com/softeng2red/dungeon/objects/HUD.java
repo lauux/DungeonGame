@@ -34,7 +34,7 @@ public class HUD {
         }
         g.setColor(Color.WHITE);
         g.setFont(font);
-        g.drawString("Time: ", 30, 130); // Timer可以用
+        g.drawString("Time: ", 37, 130); // Timer可以用
 
     }
 
