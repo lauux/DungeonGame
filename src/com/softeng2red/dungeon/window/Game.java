@@ -1,5 +1,6 @@
 package com.softeng2red.dungeon.window;
 
+import com.softeng2red.dungeon.framework.GameObject;
 import com.softeng2red.dungeon.framework.KeyInput;
 import com.softeng2red.dungeon.framework.ObjectId;
 import com.softeng2red.dungeon.framework.Texture;
@@ -24,6 +25,7 @@ public class Game extends Canvas implements Runnable {
     Handler handler;
     Camera cam;
     static Texture tex;
+    private HUD hud;
 
     Random rand = new Random();
 
@@ -44,6 +46,14 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(new Health(650 ,20, handler,ObjectId.Health));
 
         this.addKeyListener(new KeyInput(handler));
+
+        for (int i = 0; i < handler.object.size(); i++) {
+            GameObject tempObject = handler.object.get(i);
+            if(tempObject.getId() == ObjectId.Health){
+                hud = new HUD((Health) tempObject);
+            }
+
+        }
    }
 
     public synchronized void start() {
@@ -52,6 +62,7 @@ public class Game extends Canvas implements Runnable {
         running = true;
         thread = new Thread(this);
         thread.start();
+
     }
 
     public void run() {
@@ -115,9 +126,12 @@ public class Game extends Canvas implements Runnable {
         g2d.translate(cam.getX(),cam.getY());
         handler.render(g);
         g2d.translate(-cam.getX(),-cam.getY());
+
+        hud.draw((Graphics2D) g);
         /******************/
         g.dispose();
         bs.show();
+
     }
 
     private void LoadImageLevel(BufferedImage image){
