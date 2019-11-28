@@ -12,6 +12,7 @@ public class HUD {
     private Health healthObject;
     //private BufferedImage image;
     private Font font;
+    private boolean running = true;
 
     Texture tex = Game.getInstance();
 
@@ -28,17 +29,21 @@ public class HUD {
     }
 
     public void draw(Graphics2D g){
-        // draw images and fonts here
-        for (int i = 0; i < healthObject.healthNum; i++) {
-            g.drawImage(tex.health[0], 30 + i * 32, 50, null);
+        if(running) {
+            // draw images and fonts here
+            for (int i = 0; i < healthObject.healthNum; i++) {
+                g.drawImage(tex.health[0], 30 + i * 32, 50, null);
+            }
+            g.setColor(Color.WHITE);
+            g.setFont(font);
+            g.drawString("Time: ", 37, 130); // Timer可以用
         }
-        g.setColor(Color.WHITE);
-        g.setFont(font);
-        g.drawString("Time: ", 37, 130); // Timer可以用
+    }
 
+    public void clear(){
+        running = false;
     }
 
 }
 
 
-// 创建 HUD head up display

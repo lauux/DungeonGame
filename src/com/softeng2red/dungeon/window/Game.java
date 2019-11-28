@@ -119,6 +119,7 @@ public class Game extends Canvas implements Runnable {
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ObjectId.Player){
                     handler.object.clear();
+                    hud.clear();
                     handler.addObject(new Game_Over(tempObject.getX()-((2*WIDTH)/9), tempObject.getY()-HEIGHT/5, ObjectId.Game_Over));
             }
         }
