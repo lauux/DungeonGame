@@ -6,6 +6,7 @@ import com.softeng2red.dungeon.framework.ObjectId;
 import com.softeng2red.dungeon.framework.Texture;
 import com.softeng2red.dungeon.objects.*;
 
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import java.awt.*;
@@ -67,7 +68,6 @@ public class Game extends Canvas implements Runnable {
 
     public void run() {
 
-
         init();
         this.requestFocus();
         long lastTime = System.nanoTime();
@@ -108,9 +108,18 @@ public class Game extends Canvas implements Runnable {
                 cam.tick(tempObject);
                 GameObject healthObject = handler.object.get(0);
                 if (healthObject.healthNum == 0) {
+                    GameOver();
+                }
+            }
+        }
+    }
+
+    private void GameOver() {
+        for (int i = 0; i < handler.object.size(); i++){
+            GameObject tempObject = handler.object.get(i);
+            if(tempObject.getId() == ObjectId.Player){
                     handler.object.clear();
                     handler.addObject(new Game_Over(tempObject.getX()-((2*WIDTH)/9), tempObject.getY()-HEIGHT/5, ObjectId.Game_Over));
-                }
             }
         }
     }
@@ -177,8 +186,11 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String args[]) {
-        new Window(960, 800, "A Dungeon Game",  new Game());
+        newGame();
 
+    }
+    public static void newGame() {
+        new Window(960, 800, "A Dungeon Game",  new Game());
     }
 }
 
