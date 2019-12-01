@@ -14,6 +14,7 @@ public class Handler {
 
     private GameObject tempObject;
     private GameObject health;
+    private GameObject spotlight;
 
     public void tick() {
         for (int i = 0; i < object.size(); i++) {
@@ -25,11 +26,19 @@ public class Handler {
     public void render(Graphics g) {
         for (int i = 0; i < object.size(); i++) {
             tempObject = object.get(i);
-            tempObject.render(g);
+
             if (tempObject.getId() == ObjectId.Health){
                 this.health = tempObject;
             }
+            if (tempObject.getId() == ObjectId.Spotlight){
+                this.spotlight = tempObject;
+            }
+            else{
+                tempObject.render(g);
+            }
         }
+
+        spotlight.render(g);
         health.render(g);
 
     }

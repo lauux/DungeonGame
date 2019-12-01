@@ -42,6 +42,7 @@ public class Game extends Canvas implements Runnable {
 
         // temporarily initialize health, need to improve later
         handler.addObject(new Health(650 ,20, handler,ObjectId.Health));
+        handler.addObject(new Spotlight(650 ,20, handler,ObjectId.Spotlight));
 
         this.addKeyListener(new KeyInput(handler));
    }
@@ -161,7 +162,6 @@ public class Game extends Canvas implements Runnable {
     public static void main(String args[]) {
 
         new Window(960, 800, "A Dungeon Game",  new Game());
-
 
     }
 }

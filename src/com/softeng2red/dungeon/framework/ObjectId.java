@@ -7,6 +7,7 @@ public enum ObjectId {
     Player(),
     Villain(),
     Obstacle(),
-    Health()
+    Health(),
+    Spotlight()
 
 }
