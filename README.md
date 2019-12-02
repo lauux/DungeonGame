@@ -27,3 +27,9 @@ This is a github repo for the coursework.
 - 25/11/19 <br>
     Updates the new version with Game-Over Screen <br>
     by: Corey
+- 29/11/19 <br>
+    Updates the new version with restartable option <br>
+    by: Corey
+- 01/12/19 <br>
+    Updates the new version with Spotlight <br>
+    by: Matt
