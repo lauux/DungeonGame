@@ -57,18 +57,14 @@ public class Texture {
 
         block[0] = bs.grabImage(1,1,32,32); //dirt block
         block[1] = bs.grabImage(2,1,32,32); //grass block
-
         player[0] = ps.grabImage(1,1,25,41);
-
         beer[0] = beers.grabImage(1,3,32,32);
         obstacle[0] = obs.grabImage(1,1,32,32);
         villain[0] = vs.grabImage(1,1,32,32);
-
         health[0] = hs.grabImage(1,1,32,32);
         health[1] = hs.grabImage(1,2,32,32);
         gameover[0] = gos.grabImage(1,1,960,800);
-
-        spotlight[0] = ss.grabImage(1,1,512,512);
+        spotlight[0] = ss.grabImage(1,1,600,600);
 
     }
 }

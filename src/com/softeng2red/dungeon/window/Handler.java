@@ -27,19 +27,19 @@ public class Handler {
         for (int i = 0; i < object.size(); i++) {
             tempObject = object.get(i);
 
-            if (tempObject.getId() == ObjectId.Health){
-                this.health = tempObject;
-            }
-            if (tempObject.getId() == ObjectId.Spotlight){
-                this.spotlight = tempObject;
-            }
-            else{
+//            if (tempObject.getId() == ObjectId.Health){
+//                this.health = tempObject;
+//            }
+//            if (tempObject.getId() == ObjectId.Spotlight){
+//                this.spotlight = tempObject;
+//            }
+//            else{
                 tempObject.render(g);
-            }
+//            }
         }
 
-        spotlight.render(g);
-        health.render(g);
+//        spotlight.render(g);
+//        health.render(g);
 
     }
 

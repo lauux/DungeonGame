@@ -16,7 +16,7 @@ public class HUD {
 
     Texture tex = Game.getInstance();
 
-    public HUD(Health h){
+    public HUD (Health h) {
         healthObject = h;
         try{
             // load images here
@@ -30,10 +30,13 @@ public class HUD {
 
     public void draw(Graphics2D g){
         if(running) {
+            g.drawImage(tex.spotlight[0], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
+
             // draw images and fonts here
             for (int i = 0; i < healthObject.healthNum; i++) {
                 g.drawImage(tex.health[0], 30 + i * 32, 50, null);
             }
+
             g.setColor(Color.WHITE);
             g.setFont(font);
             g.drawString("Time: ", 37, 130); // Timer可以用
