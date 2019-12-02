@@ -20,10 +20,16 @@ public class KeyInput extends KeyAdapter {
             GameObject tempObject = handler.object.get(i);
 
             if (tempObject.getId() == ObjectId.Player) {
-                if (key == KeyEvent.VK_RIGHT)
+                if (key == KeyEvent.VK_RIGHT) {
+                    tempObject.m_Left = false;
+                    tempObject.m_Right = true;
                     tempObject.setVelX(4);
-                if (key == KeyEvent.VK_LEFT)
+                }
+                if (key == KeyEvent.VK_LEFT) {
+                    tempObject.m_Right = false;
+                    tempObject.m_Left = true;
                     tempObject.setVelX(-4);
+                }
                 if (key == KeyEvent.VK_UP && !tempObject.isJumping()) {
                     tempObject.setJumping(true);
                     tempObject.setVelY(-10);

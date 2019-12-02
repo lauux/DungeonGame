@@ -51,8 +51,29 @@ public class Player extends GameObject {
             if (tempObject.getId() == ObjectId.Block) {
                 // top
                 if (getBoundsTop().intersects(tempObject.getBounds())) {
-                    y = tempObject.getY() + (height/2);
-                    velY = 0;
+                    if (on_m_block && m_Left){
+                        x = x + 3*width;
+                        on_m_block = false;
+                        if (healthObject.healthNum>0) {
+                            healthObject.healthNum--;
+                        }
+                    }else if(on_m_block && m_Right){
+                        x = x - 3*width;
+                        on_m_block = false;
+                        if (healthObject.healthNum>0) {
+                            healthObject.healthNum--;
+                        }
+                    }else if (on_m_block){
+                        x = x - 3*width;
+                        on_m_block = false;
+                        if (healthObject.healthNum>0) {
+                            healthObject.healthNum--;
+                        }
+                    }
+                    else {
+                        y = tempObject.getY() + (height / 2);
+                        velY = 0;
+                    }
                 }
                 // bottom
                 if (getBounds().intersects(tempObject.getBounds())) {
@@ -79,15 +100,21 @@ public class Player extends GameObject {
                     y = tempObject.getY() + (height/2);
                     velY = 0;
                 }
+
                 // bottom
                 if (getBounds().intersects(tempObject.getBounds())) {
                     y = tempObject.getY() - height;
                     velY = 0;
                     falling = false;
                     jumping = false;
+                    if (tempObject.is_m_Up() == true){
+                        on_m_block = true;
+                    }
                 } else {
                     falling = true;
+                    on_m_block = false;
                 }
+
                 // right
                 if (getBoundsRight().intersects(tempObject.getBounds())) {
                     x = tempObject.getX() - width;

@@ -26,6 +26,13 @@ public class Moving_Block extends GameObject {
         if (count%this.delay==0){
             setVelY(velY*-1);
         }
+        if (velY>0){
+            m_Up = false;
+            m_Down = true;
+        }else{
+            m_Up = true;
+            m_Down = false;
+        }
         y += velY;
 
 
