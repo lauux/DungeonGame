@@ -64,7 +64,7 @@ public class Texture {
         health[0] = hs.grabImage(1,1,32,32);
         health[1] = hs.grabImage(1,2,32,32);
         gameover[0] = gos.grabImage(1,1,960,800);
-        spotlight[0] = ss.grabImage(1,1,600,600);
+        spotlight[0] = ss.grabImage(1,1,512,512);
 
     }
 }

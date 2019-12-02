@@ -22,7 +22,7 @@ This is a github repo for the coursework.
     Fixes the bug of disappearing health <br>
     by: Matt
 - 25/11/19 <br>
-    Replace the display of health with HUD <br>
+    Replaces the display of health with HUD <br>
     by: Angus
 - 25/11/19 <br>
     Updates the new version with Game-Over Screen <br>
@@ -33,3 +33,6 @@ This is a github repo for the coursework.
 - 01/12/19 <br>
     Updates the new version with Spotlight <br>
     by: Matt
+- 02/12/19 <br>
+    Fixes the bugs with spotlight and health displaying <br>
+    by: Corey
