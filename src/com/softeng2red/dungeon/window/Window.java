@@ -1,7 +1,9 @@
 package com.softeng2red.dungeon.window;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import java.awt.Dimension;
+import java.awt.Color;
 
 public class Window{
 
@@ -11,11 +13,17 @@ public class Window{
         game.setMinimumSize(new Dimension(width, height));
 
         JFrame frame = new JFrame(title);
+
+
         frame.add(game);
+
+
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
+
+
         frame.setVisible(true);
 
         game.start();
