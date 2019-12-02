@@ -1,10 +1,12 @@
 package com.softeng2red.dungeon.window;
 
+import com.softeng2red.dungeon.framework.GameObject;
 import com.softeng2red.dungeon.framework.KeyInput;
 import com.softeng2red.dungeon.framework.ObjectId;
 import com.softeng2red.dungeon.framework.Texture;
 import com.softeng2red.dungeon.objects.*;
 
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import java.awt.*;
@@ -24,8 +26,9 @@ public class Game extends Canvas implements Runnable {
     Handler handler;
     Camera cam;
     static Texture tex;
+    private HUD hud;
 
-    Random rand = new Random();
+//    Random rand = new Random();
 
     public void init() {
         WIDTH = getWidth();
@@ -33,7 +36,8 @@ public class Game extends Canvas implements Runnable {
         tex = new Texture();
 
         BufferedImageLoader loader = new BufferedImageLoader();
-        level = loader.loadImage("/level.png");//loading the level
+        // loading the level
+        level = loader.loadImage("/level.png");
 
         cam = new Camera(0,0);
 
@@ -42,8 +46,17 @@ public class Game extends Canvas implements Runnable {
 
         // temporarily initialize health, need to improve later
         handler.addObject(new Health(650 ,20, handler,ObjectId.Health));
+        handler.addObject(new Spotlight(650 ,20, handler,ObjectId.Spotlight));
 
         this.addKeyListener(new KeyInput(handler));
+
+        for (int i = 0; i < handler.object.size(); i++) {
+            GameObject tempObject = handler.object.get(i);
+            if(tempObject.getId() == ObjectId.Health){
+                hud = new HUD((Health) tempObject);
+            }
+
+        }
    }
 
     public synchronized void start() {
@@ -52,16 +65,16 @@ public class Game extends Canvas implements Runnable {
         running = true;
         thread = new Thread(this);
         thread.start();
+
     }
 
     public void run() {
-
 
         init();
         this.requestFocus();
         long lastTime = System.nanoTime();
         // decrease from 60 to 40 due to health object, need to improve later
-        double amountOfTicks =40.0;
+        double amountOfTicks = 40.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
@@ -92,12 +105,26 @@ public class Game extends Canvas implements Runnable {
 
         handler.tick();
         for (int i = 0; i<handler.object.size(); i++){
-            if(handler.object.get(i).getId() == ObjectId.Player){
-                cam.tick(handler.object.get(i));
+            GameObject tempObject = handler.object.get(i);
+            if(tempObject.getId() == ObjectId.Player){
+                cam.tick(tempObject);
+                GameObject healthObject = handler.object.get(0);
+                if (healthObject.healthNum == 0) {
+                    GameOver();
+                }
             }
         }
+    }
 
-
+    private void GameOver() {
+        for (int i = 0; i < handler.object.size(); i++){
+            GameObject tempObject = handler.object.get(i);
+            if(tempObject.getId() == ObjectId.Player){
+                    handler.object.clear();
+                    hud.clear();
+                    handler.addObject(new Game_Over(tempObject.getX()-((2*WIDTH)/9), tempObject.getY()-HEIGHT/5, ObjectId.Game_Over));
+            }
+        }
     }
 
     private void render() {
@@ -115,9 +142,12 @@ public class Game extends Canvas implements Runnable {
         g2d.translate(cam.getX(),cam.getY());
         handler.render(g);
         g2d.translate(-cam.getX(),-cam.getY());
+        hud.draw((Graphics2D) g);
+
         /******************/
         g.dispose();
         bs.show();
+
     }
 
     private void LoadImageLevel(BufferedImage image){
@@ -132,23 +162,20 @@ public class Game extends Canvas implements Runnable {
                  int blue = (pixel) & 0xff;
 
 
-                 //White on paint S, (255,255,255)
+                 //White on paint S, (255,255,255), Standard block
                  if(red == 255 && blue == 255 & green == 255) handler.addObject((new Block(xx*32,yy*32, 0, ObjectId.Block)));
-                 //Blue on paint S (0,0,255)
+                 //Blue on paint S (0,0,255), PLayer
                  if(red == 0 && blue == 255 & green == 0) handler.addObject((new Player(xx*32,yy*32, handler, ObjectId.Player)));
-                 //Green on paint S (0,255,0)
+                 //Green on paint S (0,255,0), Grass Block
                  if(red == 35 && blue == 6 & green == 255) handler.addObject((new Block(xx*32,yy*32, 1, ObjectId.Block)));
-                 //Pink on Paint S (255,0,255)
+                 //Pink on Paint S (255,0,255), Moving block
                  if (red == 251 && blue == 255 & green == 0) handler.addObject((new Moving_Block(xx*32,yy*32, 1, ObjectId.Moving_Block)));
-                 //Red on Paint S (255,0,0)
+                 //Red on Paint S (255,0,0), Villain
                  if (red == 251 && blue == 7 & green == 0) handler.addObject((new Villain(xx*32,yy*32, ObjectId.Villain)));
-                 // Yellow on Paint S (229,229,92)
+                 // Yellow on Paint S (229,229,92), Beer
                  if (red == 229 && blue == 92 & green == 229) handler.addObject((new Beer(xx*32,yy*32, ObjectId.Beer)));
-                 // Brown on Paint S (102,0,0)
+                 // Brown on Paint S (102,0,0), Barrel
                  if (red == 102 && blue == 0 & green == 0) handler.addObject((new Obstacle(xx*32,yy*32, ObjectId.Obstacle)));
-
-
-
 
              }
          }
@@ -159,8 +186,10 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String args[]) {
+        newGame();
+    }
+    public static void newGame() {
         new Window(960, 800, "A Dungeon Game",  new Game());
-
     }
 }
 

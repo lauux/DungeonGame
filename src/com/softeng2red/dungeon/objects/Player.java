@@ -2,22 +2,26 @@ package com.softeng2red.dungeon.objects;
 
 import com.softeng2red.dungeon.framework.GameObject;
 import com.softeng2red.dungeon.framework.ObjectId;
+import com.softeng2red.dungeon.window.BufferedImageLoader;
 import com.softeng2red.dungeon.window.Game;
 import com.softeng2red.dungeon.window.Handler;
 import com.softeng2red.dungeon.framework.Texture;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 public class Player extends GameObject {
 
     private float width = 32, height = 64;
-
+    
     private float gravity = 0.5f;
     private final float MAX_SPEED = 10;
 
     private Handler handler;
     Texture tex = Game.getInstance();
+
+//    Game game;
 
     public Player(float x, float y, Handler handler, ObjectId id) {
         super(x, y, id);
@@ -94,16 +98,10 @@ public class Player extends GameObject {
                 }
             }
             if (tempObject.getId() == ObjectId.Villain) {
-                // top
-                /*
-                if (getBoundsTop().intersects(tempObject.getBounds())) {
-                    handler.object.remove(i);
-                }*/
-
 
                 // bottom
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    handler.object.remove(i);
+                    handler.object.remove(tempObject);
 
                 }
                 // right
