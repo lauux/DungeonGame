@@ -19,8 +19,11 @@ This is a github repo for the coursework.
     Updates the new version with health display <br>
     by: Angus
 - 25/11/19 <br>
-    Updates the new version with Game-Over Screen <br>
-    by: Corey
-- 25/11/19 <br>
     Fixes the bug of disappearing health <br>
     by: Matt
+- 25/11/19 <br>
+    Replace the display of health with HUD <br>
+    by: Angus
+- 25/11/19 <br>
+    Updates the new version with Game-Over Screen <br>
+    by: Corey
