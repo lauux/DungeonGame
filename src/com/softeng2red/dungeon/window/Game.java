@@ -16,14 +16,17 @@ import java.util.Random;
 //This class Handles the main game logic
 public class Game extends Canvas implements Runnable {
 
+    public static boolean isAppear = true;
     private boolean running = false;
     private Thread thread;
     public static int WIDTH, HEIGHT;
     private BufferedImage level = null, city = null;
 
-
     public static int init_time = 60;
     public static int time = init_time;
+
+    public static int count;
+    public static int delay;
 
     // Object
     Handler handler;
@@ -102,6 +105,14 @@ public class Game extends Canvas implements Runnable {
 //Function which carries out the functions at each tick
     private void tick() {
         handler.tick();
+
+        // the code block bellow controls the appearance of disappearing blocks
+        count ++;
+        delay = 80;
+        if(count%delay==0) {
+            isAppear = !isAppear;
+        }
+
         for (int i = 0; i<handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ObjectId.Player){
@@ -187,6 +198,9 @@ public class Game extends Canvas implements Runnable {
                  if (red == 229 && blue == 92 & green == 229) handler.addObject((new Beer(xx*32,yy*32, ObjectId.Beer)));
                  // Brown on Paint S (102,0,0), Barrel
                  if (red == 102 && blue == 0 & green == 0) handler.addObject((new Obstacle(xx*32,yy*32, ObjectId.Obstacle)));
+                 // Disappearing Blocks
+                 //if (red ==  && blue ==  & green == ) handler.addObject((new Disappearing_Block(xx*32,yy*32, ObjectId.Disappearing_Block)));
+
 
              }
          }
