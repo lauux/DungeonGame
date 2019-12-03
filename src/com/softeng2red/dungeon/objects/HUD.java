@@ -46,7 +46,6 @@ public class HUD {
 
             // Different number of hearts shown
             for (int i = 0; i < healthObject.healthNum; i++) {
-                System.out.println("heart: " + healthObject.healthNum);
                 g.drawImage(tex.health[0], 30 + i * 32, 50, null);
             }
 
@@ -57,6 +56,7 @@ public class HUD {
     }
 
     public void init() {
+        healthObject.healthNum = GameObject.init_health;
         running = true;
 
     }

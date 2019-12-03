@@ -5,6 +5,7 @@ import com.softeng2red.dungeon.framework.KeyInput;
 import com.softeng2red.dungeon.framework.ObjectId;
 import com.softeng2red.dungeon.framework.Texture;
 import com.softeng2red.dungeon.objects.*;
+import com.softeng2red.dungeon.window.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

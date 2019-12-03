@@ -1,8 +1,9 @@
 package com.softeng2red.dungeon.framework;
 
+import com.softeng2red.dungeon.window.Handler;
 import com.softeng2red.dungeon.objects.HUD;
 import com.softeng2red.dungeon.window.Game;
-import com.softeng2red.dungeon.window.Handler;
+
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
