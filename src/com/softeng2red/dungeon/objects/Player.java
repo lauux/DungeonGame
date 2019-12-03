@@ -218,9 +218,33 @@ public class Player extends GameObject {
                 }
             }
 
-//            if (tempObject.getId() == ObjectId.Game_Over) {
-//                cam.setX(0);
-//            }
+            // Detecting collisions with Disappearing Blocks
+            if(Game.isAppear) {
+                if (tempObject.getId() == ObjectId.Disappearing_Block) {
+                    // top
+                    if (getBoundsTop().intersects(tempObject.getBounds())) {
+                        y = tempObject.getY() + (height / 2);
+                        velY = 0;
+                    }
+                    // bottom
+                    if (getBounds().intersects(tempObject.getBounds())) {
+                        y = tempObject.getY() - height;
+                        velY = 0;
+                        falling = false;
+                        jumping = false;
+                    } else {
+                        falling = true;
+                    }
+                    // right
+                    if (getBoundsRight().intersects(tempObject.getBounds())) {
+                        x = tempObject.getX() - width;
+                    }
+                    // left
+                    if (getBoundsLeft().intersects(tempObject.getBounds())) {
+                        x = tempObject.getX() + width;
+                    }
+                }
+            }
         }
     }
     //Draws the player with the animation
