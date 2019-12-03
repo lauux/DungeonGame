@@ -5,45 +5,22 @@ import com.softeng2red.dungeon.framework.ObjectId;
 import com.softeng2red.dungeon.framework.Texture;
 import com.softeng2red.dungeon.window.Game;
 import com.softeng2red.dungeon.window.Handler;
-
 import java.awt.*;
 import java.util.LinkedList;
 
+//This Class handles the Health of the player
 public class Health extends GameObject {
 
     Texture tex = Game.getInstance();
-
     private Handler handler;
-
-
 
     public Health(float x, float y, Handler handler, ObjectId id) {
         super(x, y, id);
         this.handler = handler;
     }
 
-    /////////////////
-    public void tick(LinkedList<GameObject> object)
-    {
-        /*for(int i = 0; i < handler.object.size(); i ++)
-        {
-            GameObject tempObject = handler.object.get(i);
-            if (tempObject.getId() == ObjectId.Player) {
-                x = tempObject.getX();
-                y = tempObject.getY();
-            }
-        }*/
-    }
-
-
-    public void render(Graphics g) {
-        /*
-            for (int i = 0; i < healthNum; i++) {
-                g.drawImage(tex.health[0], (int) x + 300 + i * 32, (int) y - 350, null);
-            }*/
-    }
-
-
+    public void tick(LinkedList<GameObject> object){}
+    public void render(Graphics g) {}
     public Rectangle getBounds() {
         return null;
     }

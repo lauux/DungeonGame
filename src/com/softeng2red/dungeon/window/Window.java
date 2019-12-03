@@ -1,8 +1,11 @@
 package com.softeng2red.dungeon.window;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import java.awt.Dimension;
+import java.awt.Color;
 
+//This class creates the new window which the game will be player in.
 public class Window{
 
     public Window(int width, int height, String title, Game game) {

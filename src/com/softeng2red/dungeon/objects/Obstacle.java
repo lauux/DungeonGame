@@ -8,6 +8,7 @@ import com.softeng2red.dungeon.window.Game;
 import java.awt.*;
 import java.util.LinkedList;
 
+//Handles Obstacle objects e.g. Barrel
 public class Obstacle extends GameObject {
 
     Texture tex = Game.getInstance();

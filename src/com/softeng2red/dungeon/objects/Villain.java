@@ -5,86 +5,59 @@ import com.softeng2red.dungeon.framework.ObjectId;
 import com.softeng2red.dungeon.framework.Texture;
 import com.softeng2red.dungeon.window.Game;
 import com.softeng2red.dungeon.window.Handler;
-
+import java.util.Random;
 import java.awt.*;
 import java.util.LinkedList;
 
+
+//This Class handles the Villains
+//Villains are either a fox or a rat
+//They move backwards and forwards in predictable manner
 public class Villain extends GameObject {
 
     private float width = 32, height = 32;
     private float gravity = 0.5f;
     private final float MAX_SPEED = 10;
-//    Handler handler;
+    private int Villain_Type;
+    private int count;
+    private int delay;
+
     Texture tex = Game.getInstance();
 
 
-    public Villain(float x, float y, ObjectId id) {
+    public Villain(float x, float y,int delay, ObjectId id) {
         super(x, y, id);
-//        this.handler = handler;
-
+        this.delay = delay*40;
+        setVelX(1);
+        Random random = new Random();
+        Villain_Type = random.nextInt(2);//Selects either a fox or rat randomly
     }
 
-
+//Each tick the villain is moved
     public void tick(LinkedList<GameObject> object) {
-
-        if (falling || jumping) {
-            velY += gravity;
-
-            if (velY > MAX_SPEED)
-                velY = MAX_SPEED;
+        this.count +=1;
+        if (count%this.delay==0){
+            setVelX(velX*-1);
         }
-//        Collision(object);
+        x += velX;
     }
-
-//    private void Collision(LinkedList<GameObject> object) {
-//        for (int i = 0; i < handler.object.size(); i++) {
-//            GameObject tempObject = handler.object.get(i);
-//
-//            //Detecting collisions with Blocks
-//            if (tempObject.getId() == ObjectId.Block) {
-//                // bottom
-//                if (getBounds().intersects(tempObject.getBounds())) {
-//                    y = tempObject.getY() - height;
-//                    velY = 0;
-//                    falling = false;
-//                    jumping = false;
-//                } else {
-//                    falling = true;
-//                }
-//                // right
-//                if (getBoundsRight().intersects(tempObject.getBounds())) {
-//                    x = tempObject.getX() - width;
-//                }
-//                // left
-//                if (getBoundsLeft().intersects(tempObject.getBounds())) {
-//                    x = tempObject.getX() + width;
-//                }
-//            }
-//
-//            //Detecting collisions with Moving_Blocks
-//            if (tempObject.getId() == ObjectId.Moving_Block) {
-//                // bottom
-//                if (getBounds().intersects(tempObject.getBounds())) {
-//                    y = tempObject.getY() - height;
-//                    velY = 0;
-//                    falling = false;
-//                    jumping = false;
-//                } else {
-//                    falling = true;
-//                }
-//                // right
-//                if (getBoundsRight().intersects(tempObject.getBounds())) {
-//                    x = tempObject.getX() - width;
-//                }
-//                // left
-//                if (getBoundsLeft().intersects(tempObject.getBounds())) {
-//                    x = tempObject.getX() + width;
-//                }
-//            }
-//        }
-//    }
+    //This direction the villain is moving is the direction the image of the villain will face.
     public void render(Graphics g) {
-        g.drawImage(tex.villain[0],(int)x,(int)y,null);
+        if (velX>0){
+            if (Villain_Type == 1){
+                g.drawImage(tex.villain[1],(int)x,(int)y,(int) width + 10,(int) height, null);
+            }else{
+                g.drawImage(tex.villain[3],(int)x,(int)y,(int) width,(int) height, null);
+            }
+        }else{
+            if (Villain_Type == 1){
+                g.drawImage(tex.villain[0],(int)x,(int)y,(int) width + 10,(int) height, null);
+            }else{
+                g.drawImage(tex.villain[2],(int)x,(int)y,(int) width,(int) height, null);
+            }
+        }
+
+
 
     }
 
