@@ -43,3 +43,9 @@ This is a github repo for the coursework.
 - 03/12/19 <br>
     Updates the new version with Timer <br>
     by: Corey
+- 03/12/19 <br>
+    Updates the new version with disappearing blocks <br>
+    by: Angus
+- 03/12/19 <br>
+    Fixes the bug of influent restarting game <br>
+    by: Corey
