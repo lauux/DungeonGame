@@ -22,6 +22,9 @@ public class Game extends Canvas implements Runnable {
 
     private BufferedImage level = null;
 
+    public static int init_time = 10;
+    public static int time = init_time;
+
     // Object
     Handler handler;
     Camera cam;
@@ -92,8 +95,10 @@ public class Game extends Canvas implements Runnable {
             frames++;
 
             if ((System.currentTimeMillis() - timer) > 1000) {
+                if (time >= 0)
+                    time--;
                 timer += 1000;
-                System.out.println("FPS: " + frames + "  TICKS: " + updates);
+                System.out.println("FPS: " + frames + "  TICKS: " + updates + " TIME: " + time);
                 frames = 0;
                 updates = 0;
             }
@@ -108,11 +113,14 @@ public class Game extends Canvas implements Runnable {
             if(tempObject.getId() == ObjectId.Player){
                 cam.tick(tempObject);
                 GameObject healthObject = handler.object.get(0);
-                if (healthObject.healthNum == 0) {
+                if (healthObject.healthNum == healthObject.minHealth) {
                     GameOver();
                 }
             }
         }
+
+        if (time < 0)
+            GameOver();
     }
 
     private void GameOver() {
@@ -178,6 +186,14 @@ public class Game extends Canvas implements Runnable {
 
              }
          }
+    }
+
+    public static int getTime() {
+        return time;
+    }
+
+    public static void setTime(int new_time) {
+        time = new_time;
     }
 
     public static Texture getInstance(){

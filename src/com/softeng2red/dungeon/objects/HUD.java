@@ -39,7 +39,7 @@ public class HUD {
 
             g.setColor(Color.WHITE);
             g.setFont(font);
-            g.drawString("Time: ", 37, 130); // Timer可以用
+            g.drawString(String.format("Time: %03d", Game.getTime()), 37, 130); // Timer可以用
         }
     }
 
