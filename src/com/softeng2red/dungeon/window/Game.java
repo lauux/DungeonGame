@@ -6,12 +6,11 @@ import com.softeng2red.dungeon.framework.ObjectId;
 import com.softeng2red.dungeon.framework.Texture;
 import com.softeng2red.dungeon.objects.*;
 
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
+
 
 //This class Handles the main game logic
 public class Game extends Canvas implements Runnable {
@@ -19,11 +18,11 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
     private Thread thread;
     public static int WIDTH, HEIGHT;
-    private BufferedImage level = null, city = null;
-
+    public BufferedImage level0 = null, level = null, city = null;
 
     public static int init_time = 60;
     public static int time = init_time;
+    public boolean is_game_over = false;
 
     // Object
     Handler handler;
@@ -31,6 +30,7 @@ public class Game extends Canvas implements Runnable {
     static Texture tex;
     private HUD hud;
 
+    public static int LEVEL = 1;
 
     public void init() {
         WIDTH = getWidth();
@@ -40,13 +40,13 @@ public class Game extends Canvas implements Runnable {
         BufferedImageLoader loader = new BufferedImageLoader();
         // loading the level
         level = loader.loadImage("/level.png");//Loads the level image
+        level0 = loader.loadImage("/GameOverLevel.png");// Loads the Game Over image
         city = loader.loadImage("/city.png");//Loads the background city image
 
         cam = new Camera(0,0);//Initializes Camera
-        handler = new Handler();//Initializes Handler
-        LoadImageLevel(level);
+        handler = new Handler(cam);//Initializes Handler
+        handler.LoadImageLevel(level);
         handler.addObject(new Health(650 ,20, handler,ObjectId.Health));//Initializes health
-        this.addKeyListener(new KeyInput(handler));//Adds key Listener
 
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
@@ -54,7 +54,9 @@ public class Game extends Canvas implements Runnable {
                 hud = new HUD((Health) tempObject);
             }
         }
-   }
+        this.addKeyListener(new KeyInput(handler, this, hud));//Adds key Listener
+
+    }
 
     public synchronized void start() {
         if (running)
@@ -64,7 +66,7 @@ public class Game extends Canvas implements Runnable {
         thread.start();
 
     }
-// Function which runs the FPS
+    // Function which runs the FPS
     public void run() {
 
         init();
@@ -99,7 +101,7 @@ public class Game extends Canvas implements Runnable {
             }
         }
     }
-//Function which carries out the functions at each tick
+    //Function which carries out the functions at each tick
     private void tick() {
         handler.tick();
         for (int i = 0; i<handler.object.size(); i++){
@@ -118,15 +120,15 @@ public class Game extends Canvas implements Runnable {
             // Checking if the time has run up
             GameOver();
     }
-//Function which is called when player dies
+    //Function which is called when player dies
     private void GameOver() {
         for (int i = 0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ObjectId.Player){
-                    handler.object.clear();//Clears objects
-                    hud.clear();//Clears HUD
-                    //Displays GameOver
-                    handler.addObject(new Game_Over(tempObject.getX()-((WIDTH)/2), tempObject.getY()-HEIGHT/2, ObjectId.Game_Over));
+                handler.clearLevel();//Clears objects
+                hud.clear();//Clears HUD
+                //Displays GameOver
+                handler.addObject(new Game_Over(tempObject.getX()-((WIDTH)/2), tempObject.getY()-HEIGHT/2, ObjectId.Game_Over));
 
             }
         }
@@ -154,13 +156,13 @@ public class Game extends Canvas implements Runnable {
         g2d.translate(-cam.getX(),-cam.getY());//Adjusts camera so is aligned with player
         hud.draw((Graphics2D) g);//Draws the heads up display
 
-
         /******************/
         g.dispose();
         bs.show();
 
     }
-//Function that reads the level image and creates objects dependant on the colour of the pixel
+
+    //Function that reads the level image and creates objects dependant on the colour of the pixel
     private void LoadImageLevel(BufferedImage image){
          int w = image.getWidth();
          int h = image.getHeight();
@@ -172,11 +174,10 @@ public class Game extends Canvas implements Runnable {
                  int green = (pixel >> 8) & 0xff;
                  int blue = (pixel) & 0xff;
 
-
                  //White on paint S, (255,255,255), Standard block
                  if(red == 255 && blue == 255 & green == 255) handler.addObject((new Block(xx*32,yy*32, 0, ObjectId.Block)));
                  //Blue on paint S (0,0,255), PLayer
-                 if(red == 0 && blue == 255 & green == 0) handler.addObject((new Player(xx*32,yy*32, handler, ObjectId.Player)));
+                 if(red == 0 && blue == 255 & green == 0) handler.addObject((new Player(xx*32,yy*32, handler, cam, ObjectId.Player)));
                  //Green on paint S (0,255,0), Grass Block
                  if(red == 35 && blue == 6 & green == 255) handler.addObject((new Block(xx*32,yy*32, 1, ObjectId.Block)));
                  //Pink on Paint S (255,0,255), Moving block

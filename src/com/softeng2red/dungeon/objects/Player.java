@@ -2,14 +2,12 @@ package com.softeng2red.dungeon.objects;
 
 import com.softeng2red.dungeon.framework.GameObject;
 import com.softeng2red.dungeon.framework.ObjectId;
-import com.softeng2red.dungeon.window.Animation;
-import com.softeng2red.dungeon.window.BufferedImageLoader;
-import com.softeng2red.dungeon.window.Game;
-import com.softeng2red.dungeon.window.Handler;
+import com.softeng2red.dungeon.window.*;
 import com.softeng2red.dungeon.framework.Texture;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.lang.annotation.AnnotationTypeMismatchException;
+import java.util.Calendar;
 import java.util.LinkedList;
 
 
@@ -20,15 +18,17 @@ public class Player extends GameObject {
     private float gravity = 0.5f;
     private final float MAX_SPEED = 10;
     private Handler handler;
+    private Camera cam;
     Texture tex = Game.getInstance();
     private Animation playerWalkRight;
     private Animation playerWalkLeft;
 
 //    Game game;
 
-    public Player(float x, float y, Handler handler, ObjectId id) {
+    public Player(float x, float y, Handler handler, Camera cam, ObjectId id) {
         super(x, y, id);
         this.handler = handler;
+        this.cam = cam;
 
         playerWalkRight = new Animation(5,tex.player[0],tex.player[1],tex.player[2]);
         playerWalkLeft = new Animation(5,tex.player[3],tex.player[4],tex.player[5]);
@@ -217,6 +217,10 @@ public class Player extends GameObject {
                     x = tempObject.getX() + width;
                 }
             }
+
+//            if (tempObject.getId() == ObjectId.Game_Over) {
+//                cam.setX(0);
+//            }
         }
     }
     //Draws the player with the animation
