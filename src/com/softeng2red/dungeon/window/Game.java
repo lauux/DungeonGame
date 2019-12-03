@@ -22,7 +22,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage level = null, city = null;
 
 
-    public static int init_time = 10;
+    public static int init_time = 60;
     public static int time = init_time;
 
     // Object

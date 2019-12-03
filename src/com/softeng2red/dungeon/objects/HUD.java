@@ -30,6 +30,11 @@ public class HUD {
     public void draw(Graphics2D g){
 
         if(running) {
+            // Displays a timer
+            g.setColor(Color.WHITE);
+            g.setFont(font);
+            g.drawString(String.format("Time: %03d", Game.getTime()), 37, 130); // Timer可以用
+
             //Varies the size of the spotlight dependant on how much beer has been collected
             if (healthObject.beerNum == 1) g.drawImage(tex.spotlight[3], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
             else if (healthObject.beerNum == 2) g.drawImage(tex.spotlight[2], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
