@@ -2,18 +2,17 @@ package com.softeng2red.dungeon.objects;
 
 import com.softeng2red.dungeon.framework.Texture;
 import com.softeng2red.dungeon.window.Game;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
+//This class handles the heads up display
+//This shows the health and the time
 public class HUD {
 
     private Health healthObject;
-    //private BufferedImage image;
     private Font font;
     private boolean running = true;
-
     Texture tex = Game.getInstance();
 
     public HUD (Health h) {
@@ -29,10 +28,16 @@ public class HUD {
     }
 
     public void draw(Graphics2D g){
-        if(running) {
-            g.drawImage(tex.spotlight[0], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
 
-            // draw images and fonts here
+        if(running) {
+            //Varies the size of the spotlight dependant on how much beer has been collected
+            if (healthObject.beerNum == 1) g.drawImage(tex.spotlight[3], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
+            else if (healthObject.beerNum == 2) g.drawImage(tex.spotlight[2], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
+            else if (healthObject.beerNum == 3) g.drawImage(tex.spotlight[1], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
+            else if (healthObject.beerNum >= 4) g.drawImage(tex.spotlight[0], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
+
+
+            // Different number of hearts shown
             for (int i = 0; i < healthObject.healthNum; i++) {
                 g.drawImage(tex.health[0], 30 + i * 32, 50, null);
             }
@@ -42,6 +47,7 @@ public class HUD {
             g.drawString(String.format("Time: %03d", Game.getTime()), 37, 130); // Timer可以用
         }
     }
+
 
     public void clear(){
         running = false;

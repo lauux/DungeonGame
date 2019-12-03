@@ -2,6 +2,7 @@ package com.softeng2red.dungeon.framework;
 
 import java.awt.image.BufferedImage;
 
+//This class enables loading of sprite sheets.
 public class SpriteSheet {
     private BufferedImage image;
     public SpriteSheet(BufferedImage image){
