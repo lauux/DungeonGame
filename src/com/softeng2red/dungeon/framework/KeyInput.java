@@ -40,6 +40,7 @@ public class KeyInput extends KeyAdapter {
             if (tempObject.getId() == ObjectId.Game_Over) {
                 if (key == KeyEvent.VK_SPACE)
                     Game.newGame();
+                    Game.setTime(Game.init_time);
             }
         }
 

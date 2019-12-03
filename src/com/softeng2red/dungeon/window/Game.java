@@ -22,6 +22,9 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage level = null, city = null;
 
 
+    public static int init_time = 60;
+    public static int time = init_time;
+
     // Object
     Handler handler;
     Camera cam;
@@ -87,8 +90,10 @@ public class Game extends Canvas implements Runnable {
             frames++;
 
             if ((System.currentTimeMillis() - timer) > 1000) {
+                if (time >= 0)
+                    time--;
                 timer += 1000;
-                System.out.println("FPS: " + frames + "  TICKS: " + updates);
+                System.out.println("FPS: " + frames + "  TICKS: " + updates + " TIME: " + time);
                 frames = 0;
                 updates = 0;
             }
@@ -102,11 +107,16 @@ public class Game extends Canvas implements Runnable {
             if(tempObject.getId() == ObjectId.Player){
                 cam.tick(tempObject);
                 GameObject healthObject = handler.object.get(0);
-                if (healthObject.healthNum == 0) {//Checking if the player has died
+                if (healthObject.healthNum == healthObject.minHealth) {
+                //Checking if the player has died
                     GameOver();
                 }
             }
         }
+
+        if (time < 0)
+            // Checking if the time has run up
+            GameOver();
     }
 //Function which is called when player dies
     private void GameOver() {
@@ -155,13 +165,12 @@ public class Game extends Canvas implements Runnable {
          int w = image.getWidth();
          int h = image.getHeight();
 
-         for (int xx = 0; xx<w; xx++){
+         for (int xx = 0; xx < w; xx++){
              for (int yy = 0; yy < h; yy++){
                  int pixel = image.getRGB(xx,yy);
                  int red = (pixel >> 16) & 0xff;
                  int green = (pixel >> 8) & 0xff;
                  int blue = (pixel) & 0xff;
-
 
 
                  //White on paint S, (255,255,255), Standard block
@@ -173,20 +182,28 @@ public class Game extends Canvas implements Runnable {
                  //Pink on Paint S (255,0,255), Moving block
                  if (red == 251 && blue == 255 & green == 0) handler.addObject((new Moving_Block(xx*32,yy*32, 1, ObjectId.Moving_Block)));
                  //Red on Paint S (255,0,0), Villain
-                 if (red == 251 && blue == 7 & green == 0) handler.addObject((new Villain(xx*32,yy*32,2, ObjectId.Villain)));
+                 if (red == 251 && blue == 7 & green == 0) handler.addObject((new Villain(xx*32,yy*32, 2, ObjectId.Villain)));
                  // Yellow on Paint S (229,229,92), Beer
                  if (red == 229 && blue == 92 & green == 229) handler.addObject((new Beer(xx*32,yy*32, ObjectId.Beer)));
                  // Brown on Paint S (102,0,0), Barrel
                  if (red == 102 && blue == 0 & green == 0) handler.addObject((new Obstacle(xx*32,yy*32, ObjectId.Obstacle)));
 
              }
-
          }
+    }
+
+    public static int getTime() {
+        return time;
+    }
+
+    public static void setTime(int new_time) {
+        time = new_time;
     }
 
     public static Texture getInstance(){
         return tex;
     }
+
     public static void main(String args[]) {
         newGame();
     }
