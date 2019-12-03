@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
+//This Class Allows images to be loaded.
 public class BufferedImageLoader {
 
     private BufferedImage image;
