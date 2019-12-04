@@ -1,5 +1,6 @@
 package com.softeng2red.dungeon.framework;
 
+import com.softeng2red.dungeon.objects.Health;
 import com.softeng2red.dungeon.window.Handler;
 import com.softeng2red.dungeon.objects.HUD;
 import com.softeng2red.dungeon.window.Game;
