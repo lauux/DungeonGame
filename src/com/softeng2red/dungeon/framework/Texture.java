@@ -58,7 +58,7 @@ public class Texture {
 
         block[0] = bs.grabImage(1,1,32,32); //dirt block
         block[1] = bs.grabImage(2,1,32,32); //grass block
-
+        block[2] = bs.grabImage(3,1,32,32); // Game Over block
         player[0] = ps.grabImage(1,1,25,41);//idle player
         player[1] = ps.grabImage(2,1,25,41);
         player[2] = ps.grabImage(3,1,25,41);

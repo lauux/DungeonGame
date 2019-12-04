@@ -1,5 +1,6 @@
 package com.softeng2red.dungeon.objects;
 
+import com.softeng2red.dungeon.framework.GameObject;
 import com.softeng2red.dungeon.framework.Texture;
 import com.softeng2red.dungeon.window.Game;
 import java.awt.*;
@@ -27,6 +28,7 @@ public class HUD {
         }
     }
 
+
     public void draw(Graphics2D g){
 
         if(running) {
@@ -51,6 +53,12 @@ public class HUD {
             g.setFont(font);
             g.drawString(String.format("Time: %03d", Game.getTime()), 37, 130); // Timer可以用
         }
+    }
+
+    public void init() {
+        healthObject.healthNum = GameObject.init_health;
+        running = true;
+
     }
 
 
