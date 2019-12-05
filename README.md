@@ -36,3 +36,19 @@ This is a github repo for the coursework.
 - 02/12/19 <br>
     Fixes the bugs with spotlight and health displaying <br>
     by: Corey
+- 03/12/19 <br>
+    - Updates the new version with Animation
+    - Fixes some bugs <br>
+    by: Matt
+- 03/12/19 <br>
+    Updates the new version with Timer <br>
+    by: Corey
+- 03/12/19 <br>
+    Updates the new version with disappearing blocks <br>
+    by: Angus
+- 03/12/19 <br>
+    Fixes the bug of slack restarting game <br>
+    by: Corey
+- 04/12/19 <br>
+    Updates the new version with timer trigger <br>
+    by: Corey

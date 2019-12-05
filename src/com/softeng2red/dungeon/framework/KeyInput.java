@@ -1,7 +1,10 @@
 package com.softeng2red.dungeon.framework;
 
-import com.softeng2red.dungeon.window.Game;
+import com.softeng2red.dungeon.objects.Health;
 import com.softeng2red.dungeon.window.Handler;
+import com.softeng2red.dungeon.objects.HUD;
+import com.softeng2red.dungeon.window.Game;
+
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -9,8 +12,12 @@ import java.awt.event.KeyEvent;
 //This class handles key input.
 public class KeyInput extends KeyAdapter {
     Handler handler;
-    public KeyInput(Handler handler) {
+    Game game;
+    HUD hud;
+    public KeyInput(Handler handler, Game game, HUD hud) {
         this.handler = handler;
+        this.game = game;
+        this.hud = hud;
     }
 
     //If a useful key is pressed a corresponding action occurs
@@ -19,7 +26,7 @@ public class KeyInput extends KeyAdapter {
         int key = e.getKeyCode();
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
-
+            GameObject healthObject = handler.object.get(0);
             if (tempObject.getId() == ObjectId.Player) {
                 if (key == KeyEvent.VK_RIGHT) {
                     tempObject.m_Left = false;
@@ -38,14 +45,20 @@ public class KeyInput extends KeyAdapter {
             }
 
             if (tempObject.getId() == ObjectId.Game_Over) {
-                if (key == KeyEvent.VK_SPACE)
-                    Game.newGame();
+                if (key == KeyEvent.VK_SPACE) {
+                    Game.LEVEL = 0;
+                    handler.switchLevel();
+                    hud.init();
+                    Game.setTime(Game.init_time);
+
+
+                }
             }
         }
 
-        if (key == KeyEvent.VK_ESCAPE) {
-            System.exit(1);
-        }
+            if (key == KeyEvent.VK_ESCAPE) {
+                System.exit(1);
+            }
     }
     //Handles functionality for when a key is released.
     public void keyReleased(KeyEvent e) {

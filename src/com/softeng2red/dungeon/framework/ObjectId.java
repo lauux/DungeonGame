@@ -10,5 +10,7 @@ public enum ObjectId {
     Obstacle(),
     Spotlight(),
     Game_Over(),
-    Health()
+    Game_Timer(),
+    Health(),
+    Disappearing_Block()
 }
