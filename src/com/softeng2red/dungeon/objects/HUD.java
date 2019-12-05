@@ -20,11 +20,14 @@ public class HUD {
 
     public HUD (Health healthObject, Game_Timer timer) {
         try{
+
             this.healthObject = healthObject;
             this.timer = timer;
             font = new Font("Arial", Font.PLAIN, 24);
+
         }
         catch (Exception e){
+            System.out.println("hello");
             e.printStackTrace();
         }
     }
@@ -35,10 +38,10 @@ public class HUD {
         if(running) {
 
             // Varies the size of the spotlight dependant on how much beer has been collected
-            if (healthObject.beerNum == 1) g.drawImage(tex.spotlight[3], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
-            else if (healthObject.beerNum == 2) g.drawImage(tex.spotlight[2], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
-            else if (healthObject.beerNum == 3) g.drawImage(tex.spotlight[1], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
-            else if (healthObject.beerNum >= 4) g.drawImage(tex.spotlight[0], 1,1, Game.WIDTH + 20,Game.HEIGHT + 20, null);
+            if (healthObject.beerNum == 1) g.drawImage(tex.spotlight[3], 0,0, Game.WIDTH + 20,Game.HEIGHT + 20, null);
+            else if (healthObject.beerNum == 2) g.drawImage(tex.spotlight[2], 0,0, Game.WIDTH + 20,Game.HEIGHT + 20, null);
+            else if (healthObject.beerNum == 3) g.drawImage(tex.spotlight[1], 0,0, Game.WIDTH + 20,Game.HEIGHT + 20, null);
+            else if (healthObject.beerNum >= 4) g.drawImage(tex.spotlight[0], 0,0, Game.WIDTH + 20,Game.HEIGHT + 20, null);
 
             // Different number of hearts shown
             for (int i = 0; i < healthObject.healthNum; i++) {
