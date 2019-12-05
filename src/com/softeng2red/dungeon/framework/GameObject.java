@@ -16,6 +16,7 @@ public abstract class GameObject {
     protected boolean m_Left = false;
     protected boolean m_Up = false;
     protected boolean m_Down = false;
+    public static int init_time = 120;
     public static int init_health = 1;
     public int healthNum = init_health;
     public int beerNum = 1;

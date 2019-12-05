@@ -47,5 +47,8 @@ This is a github repo for the coursework.
     Updates the new version with disappearing blocks <br>
     by: Angus
 - 03/12/19 <br>
-    Fixes the bug of influent restarting game <br>
+    Fixes the bug of slack restarting game <br>
+    by: Corey
+- 04/12/19 <br>
+    Updates the new version with timer trigger <br>
     by: Corey

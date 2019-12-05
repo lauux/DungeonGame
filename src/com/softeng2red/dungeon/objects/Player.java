@@ -23,7 +23,6 @@ public class Player extends GameObject {
     private Animation playerWalkRight;
     private Animation playerWalkLeft;
 
-//    Game game;
 
     public Player(float x, float y, Handler handler, Camera cam, ObjectId id) {
         super(x, y, id);
@@ -127,6 +126,15 @@ public class Player extends GameObject {
                     x = tempObject.getX() + width;
                 }
             }
+
+            if (tempObject.getId() == ObjectId.Game_Timer) {
+                // top
+                if (getBoundsTop().intersects(tempObject.getBounds())) {
+                    Game.game_timer.start();
+                    handler.object.remove(tempObject);
+                }
+            }
+
             if (tempObject.getId() == ObjectId.Villain) {
 
                 // bottom
