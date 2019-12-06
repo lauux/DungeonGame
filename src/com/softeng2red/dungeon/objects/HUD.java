@@ -15,13 +15,15 @@ public class HUD {
     Game_Timer timer;
     private Health healthObject;
     private Font font;
+    private Finishing_Screen finishingScreen;
     private boolean running = true;
     Texture tex = Game.getInstance();
 
-    public HUD (Health healthObject, Game_Timer timer) {
+    public HUD (Health healthObject, Game_Timer timer, Finishing_Screen finishingScreen) {
         try{
             this.healthObject = healthObject;
             this.timer = timer;
+            this.finishingScreen = finishingScreen;
             font = new Font("Arial", Font.PLAIN, 24);
         }
         catch (Exception e){
@@ -49,6 +51,10 @@ public class HUD {
             g.setColor(Color.WHITE);
             g.setFont(font);
             g.drawString(String.format("Time: %03d", timer.getTime()), 37, 130); // Timer可以用
+        }
+
+        if(finishingScreen.isFinished) {
+            g.drawImage(tex.gameover[0],0,0,null);
         }
     }
 

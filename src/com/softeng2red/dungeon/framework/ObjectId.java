@@ -12,5 +12,6 @@ public enum ObjectId {
     Game_Over(),
     Game_Timer(),
     Health(),
-    Disappearing_Block()
+    Disappearing_Block(),
+    Finishing_Screen()
 }
