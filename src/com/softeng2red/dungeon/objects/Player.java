@@ -164,7 +164,34 @@ public class Player extends GameObject {
                 //System.out.print(i);
 
             }
-           // Detecting collisions with Beers
+
+            // Detecting collisions with finishing_screen
+            if (tempObject.getId() == ObjectId.Finishing_Screen) {
+                // top
+                if (getBoundsTop().intersects(tempObject.getBounds())) {
+                    tempObject.isFinished = true;
+                }
+                // bottom
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    if (getBoundsTop().intersects(tempObject.getBounds())) {
+                        tempObject.isFinished = true;
+                    }
+                }
+                // right
+                if (getBoundsRight().intersects(tempObject.getBounds())) {
+                    if (getBoundsTop().intersects(tempObject.getBounds())) {
+                        tempObject.isFinished = true;
+                    }
+                }
+                // left
+                if (getBoundsLeft().intersects(tempObject.getBounds())) {
+                    if (getBoundsTop().intersects(tempObject.getBounds())) {
+                        tempObject.isFinished = true;
+                    }
+                }
+            }
+
+            // Detecting collisions with Beers
             if (tempObject.getId() == ObjectId.Beer) {
                 // top
                 if (getBoundsTop().intersects(tempObject.getBounds())) {
