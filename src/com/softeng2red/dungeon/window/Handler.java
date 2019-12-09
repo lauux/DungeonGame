@@ -54,6 +54,7 @@ public class Handler {
                 int green = (pixel >> 8) & 0xff;
                 int blue = (pixel) & 0xff;
 
+//                System.out.println(""+blue + green + red);
                 //White on paint S, (255,255,255), Standard block
                 if(red == 255 && blue == 255 & green == 255) addObject((new Block(xx*32,yy*32, 0, ObjectId.Block)));
                 //Blue on paint S (0,0,255), PLayer
@@ -74,7 +75,8 @@ public class Handler {
                 if (red == 146 && blue == 104 && green == 104) addObject((new Game_Timer(xx*32, yy*32, ObjectId.Game_Timer)));
                 // Paint S (144,144,144), Disappearing Blocks
                 if (red ==  144 && blue == 144 & green == 144) addObject((new Disappearing_Block(xx*32,yy*32, ObjectId.Disappearing_Block)));
-
+                // Paint S (200, 200, 200), Finishing Screen
+                if (red ==  188 && blue == 188 & green == 188) addObject((new Finishing_Screen(xx*32,yy*32, ObjectId.Finishing_Screen)));
 
 
             }

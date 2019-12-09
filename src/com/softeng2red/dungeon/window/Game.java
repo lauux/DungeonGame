@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable {
     public static int delay;
 
     // Object
-    Handler handler;
+    public Handler handler;
     Camera cam;
     public static Game_Timer game_timer;
     static Texture tex;
@@ -52,12 +52,19 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(new Health(650 ,20, handler,ObjectId.Health));//Initializes health
         game_timer = new Game_Timer(0,0, ObjectId.Game_Timer);//Initializes game timer
 
-        for (int i = 0; i < handler.object.size(); i++) {
+        // initialize HUD object
+        GameObject finishingScreenObject = null;
+        GameObject healthObject = null;
+        for(int i = 0; i<handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
-            if(tempObject.getId() == ObjectId.Health){
-                hud = new HUD((Health) tempObject, game_timer);
+            if(tempObject.getId() == ObjectId.Health) {
+                healthObject = tempObject;
+            }
+            if(tempObject.getId() == ObjectId.Finishing_Screen) {
+                finishingScreenObject = tempObject;
             }
         }
+        hud = new HUD((Health) healthObject, game_timer, (Finishing_Screen) finishingScreenObject);
         this.addKeyListener(new KeyInput(handler, this, hud));//Adds key Listener
         game_timer.init();
 
@@ -117,6 +124,7 @@ public class Game extends Canvas implements Runnable {
             isAppear = !isAppear;
         }
 
+        // the code below controls the appearance of game over screen
         for (int i = 0; i<handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ObjectId.Player){
@@ -128,11 +136,11 @@ public class Game extends Canvas implements Runnable {
                 }
             }
         }
-
         if (game_timer.getTime() <= 0)
             // Checking if the time has run up
             GameOver();
     }
+
     //Function which is called when player dies
     private void GameOver() {
         for (int i = 0; i < handler.object.size(); i++){

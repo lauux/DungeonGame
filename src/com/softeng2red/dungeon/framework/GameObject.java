@@ -1,5 +1,7 @@
 package com.softeng2red.dungeon.framework;
 
+import com.softeng2red.dungeon.objects.Finishing_Screen;
+
 import java.awt.*;
 import java.util.LinkedList;
 
@@ -22,6 +24,7 @@ public abstract class GameObject {
     public int beerNum = 1;
     public int maxHealth  = 4;
     public int minHealth  = 0;
+    public boolean isFinished = false;
 
 
     public GameObject(float x, float y, ObjectId id) {
