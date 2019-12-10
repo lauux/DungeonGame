@@ -40,14 +40,14 @@ public class Game extends Canvas implements Runnable {
 
         BufferedImageLoader loader = new BufferedImageLoader();
         // loading the level
-        level = loader.loadImage("/level.png");//Loads the level image
+
         city = loader.loadImage("/Overground_City_Scene_Big_improved.png");//Loads the background city image
         start_menu = loader.loadImage("/Start_menu.png");
         cam = new Camera(0,0);//Initializes Camera
         handler = new Handler(cam, game_timer);//Initializes Handler
-        handler.LoadImageLevel(level);
+//        handler.LoadImageLevel(level);
         isStarting();
-        handler.addObject(new Health(650 ,20, handler,ObjectId.Health));//Initializes health
+//        handler.addObject(new Health(650 ,20, handler,ObjectId.Health));//Initializes health
         game_timer = new Game_Timer(0,0, ObjectId.Game_Timer);//Initializes game timer
 
         // initialize HUD object

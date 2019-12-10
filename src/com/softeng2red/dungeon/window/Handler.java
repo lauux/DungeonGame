@@ -13,7 +13,7 @@ public class Handler {
 
     public LinkedList<GameObject> object = new LinkedList<GameObject>();
     private GameObject tempObject;
-    private BufferedImage level, level0;
+    private BufferedImage level, level2, level3;
     public Camera cam;
     public Game_Timer timer;
 
@@ -23,8 +23,9 @@ public class Handler {
 
         BufferedImageLoader loader = new BufferedImageLoader();
         // loading the level
-        level = loader.loadImage("/level.png");//Loads the level image
-//        level0 = loader.loadImage("/GameOverLevel.png");// Loads the Game Over image
+        level = loader.loadImage("/level1.png");//Loads the level image
+        level2 = loader.loadImage("/level2.png");//Loads the level image
+        level3 = loader.loadImage("/level3.png");//Loads the level image
 
     }
 
@@ -77,7 +78,7 @@ public class Handler {
                 // Paint S (144,144,144), Disappearing Blocks
                 if (red ==  144 && blue == 144 & green == 144) addObject((new Disappearing_Block(xx*32,yy*32, ObjectId.Disappearing_Block)));
                 //Bouncer, orange on paint s
-                if (red == 252 && blue == 8 && green == 119) addObject((new Bouncer(xx*32, yy*32, ObjectId.Bouncer)));
+                if (red == 252 && blue == 8 && green == 119) addObject((new Bouncer(xx*32 - 500, yy*32 - 100, ObjectId.Bouncer)));
                 // Paint S (200, 200, 200), Finishing Screen
                 if (red ==  188 && blue == 188 & green == 188) addObject((new Finishing_Screen(xx*32,yy*32, ObjectId.Finishing_Screen)));
 
@@ -95,6 +96,10 @@ public class Handler {
             case 0:
                 LoadImageLevel(level);
                 break;
+            case 1:
+                LoadImageLevel(level2);
+            case 2:
+                LoadImageLevel(level3);
         }
         Game.LEVEL++;
     }

@@ -21,7 +21,7 @@ public abstract class GameObject {
     public static int init_time = 120;
     public static int init_health = 1;
     public static int healthNum = init_health;
-    public int beerNum = 1;
+    public static int beerNum = 1;
     public int maxHealth  = 4;
     public int minHealth  = 0;
     public int img_type = 0;

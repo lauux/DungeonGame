@@ -88,8 +88,8 @@ public class Texture {
         spotlight[2] = ss.grabImage(1,2,512,512);
         spotlight[3] = ss.grabImage(2,2,512,512);
 
-        bouncer[0] = bons.grabImage(1,1,75,100);
-        bouncer[1] = bons.grabImage(2,1,75,100);
+        bouncer[0] = bons.grabImage(1,1,500,200);
+        bouncer[1] = bons.grabImage(2,1,500,200);
 
         beer[0] = beers.grabImage(1,3,32,32);
         obstacle[0] = obs.grabImage(1,1,32,32);
