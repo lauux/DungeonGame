@@ -11,7 +11,7 @@ import java.util.LinkedList;
 //This Class Handles the GameOver object
 public class Game_Over extends GameObject {
 
-    Texture tex = Game.getInstance();
+    Texture tex = new Texture();
 
     public Game_Over(float x, float y, ObjectId id) {
         super(x, y, id);
