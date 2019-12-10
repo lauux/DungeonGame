@@ -46,7 +46,6 @@ public class Game extends Canvas implements Runnable {
         cam = new Camera(0,0);//Initializes Camera
         handler = new Handler(cam, game_timer);//Initializes Handler
         handler.LoadImageLevel(level);
-//        handler.LoadImageLevel(start_menu);
         isStarting();
         handler.addObject(new Health(650 ,20, handler,ObjectId.Health));//Initializes health
         game_timer = new Game_Timer(0,0, ObjectId.Game_Timer);//Initializes game timer
@@ -64,7 +63,7 @@ public class Game extends Canvas implements Runnable {
             }
         }
         hud = new HUD((Health) healthObject, game_timer, (Finishing_Screen) finishingScreenObject);
-        this.addKeyListener(new KeyInput(handler, this, hud, ObjectId.KeyInput));//Adds key Listener
+        this.addKeyListener(new KeyInput(handler, this, hud));//Adds key Listener
         game_timer.init();
 
     }
@@ -188,14 +187,6 @@ public class Game extends Canvas implements Runnable {
         g.dispose();
         bs.show();
 
-    }
-
-    public static int getTime() {
-        return time;
-    }
-
-    public static void setTime(int new_time) {
-        time = new_time;
     }
 
     public static Texture getInstance(){

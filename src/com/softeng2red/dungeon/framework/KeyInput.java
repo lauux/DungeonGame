@@ -1,5 +1,6 @@
 package com.softeng2red.dungeon.framework;
 
+import com.softeng2red.dungeon.objects.Game_Timer;
 import com.softeng2red.dungeon.objects.Health;
 import com.softeng2red.dungeon.window.Handler;
 import com.softeng2red.dungeon.objects.HUD;
@@ -17,11 +18,10 @@ public class KeyInput extends KeyAdapter {
     int key;
     protected ObjectId id;
 
-    public KeyInput(Handler handler, Game game, HUD hud, ObjectId id) {
+    public KeyInput(Handler handler, Game game, HUD hud) {
         this.handler = handler;
         this.game = game;
         this.hud = hud;
-        this.id = id;
     }
 
     //If a useful key is pressed a corresponding action occurs
@@ -52,7 +52,7 @@ public class KeyInput extends KeyAdapter {
                     Game.LEVEL = 0;
                     handler.switchLevel();
                     hud.init();
-                    Game.setTime(Game.init_time);
+//                    Game_Timer.setTime(GameObject.init_time);
 
 
                 }

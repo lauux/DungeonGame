@@ -8,7 +8,6 @@ public enum ObjectId {
     Player(),
     Villain(),
     Obstacle(),
-    Spotlight(),
     Game_Over(),
     Game_Timer(),
     Health(),
