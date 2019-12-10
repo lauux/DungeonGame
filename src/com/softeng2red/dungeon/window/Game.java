@@ -15,19 +15,6 @@ import java.util.Random;
 //This class Handles the main game logic
 public class Game extends Canvas implements Runnable {
 
-    public static boolean isAppear = true;
-    public static boolean isStarting = false;
-    private boolean running = false;
-    private Thread thread;
-    public static int WIDTH, HEIGHT;
-    public BufferedImage start_menu = null, level = null, city = null;
-
-    public static int init_time = 60;
-    public static int time = init_time;
-
-    public static int count;
-    public static int delay;
-
     // Object
     public Handler handler;
     Camera cam;
@@ -35,7 +22,16 @@ public class Game extends Canvas implements Runnable {
     static Texture tex;
     private HUD hud;
 
+    public static boolean isAppear = true;
+    public static boolean isStarting = false;
+    private boolean running = false;
+    private Thread thread;
+    public static int WIDTH, HEIGHT;
+    public BufferedImage start_menu = null, level = null, city = null;
+    public static int count;
+    public static int delay;
     public static int LEVEL = 1;
+
 
     public void init() {
         WIDTH = getWidth();
@@ -49,8 +45,9 @@ public class Game extends Canvas implements Runnable {
         start_menu = loader.loadImage("/Start_menu.png");
         cam = new Camera(0,0);//Initializes Camera
         handler = new Handler(cam, game_timer);//Initializes Handler
+//        handler.LoadImageLevel(level);
         isStarting();
-        handler.addObject(new Health(650 ,20, handler,ObjectId.Health));//Initializes health
+//        handler.addObject(new Health(650 ,20, handler,ObjectId.Health));//Initializes health
         game_timer = new Game_Timer(0,0, ObjectId.Game_Timer);//Initializes game timer
 
         // initialize HUD object
@@ -79,6 +76,7 @@ public class Game extends Canvas implements Runnable {
         thread.start();
 
     }
+
     // Function which runs the FPS
     public void run() {
 
@@ -105,8 +103,6 @@ public class Game extends Canvas implements Runnable {
             frames++;
 
             if ((System.currentTimeMillis() - timer) > 1000) {
-//                if (time >= 0)
-//                    time--;
                 timer += 1000;
                 System.out.println("FPS: " + frames + "  TICKS: " + updates);
                 frames = 0;
@@ -114,6 +110,7 @@ public class Game extends Canvas implements Runnable {
             }
         }
     }
+
     //Function which carries out the functions at each tick
     private void tick() {
         handler.tick();
@@ -151,7 +148,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     //Function which is called when player dies
-    private void GameOver() {
+    public void GameOver() {
         for (int i = 0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ObjectId.Player){
@@ -192,14 +189,6 @@ public class Game extends Canvas implements Runnable {
 
     }
 
-    public static int getTime() {
-        return time;
-    }
-
-    public static void setTime(int new_time) {
-        time = new_time;
-    }
-
     public static Texture getInstance(){
         return tex;
     }
@@ -207,7 +196,8 @@ public class Game extends Canvas implements Runnable {
     public static void main(String args[]) {
         startGame();
     }
-    //Creates the new Window
+
+    // Creates the new Window and game object
     public static void startGame() {
         new Window(960, 800, "A Dungeon Game",  new Game());
     }

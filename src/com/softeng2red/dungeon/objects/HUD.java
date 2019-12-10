@@ -13,7 +13,6 @@ import java.awt.*;
 //This shows the health and the time
 public class HUD {
 
-    Handler handler;
     Game_Timer timer;
     private Health healthObject;
     private Font font;
@@ -69,9 +68,12 @@ public class HUD {
     }
 
 
+    // when running is false, HUD stops display health and timer
     public void clear(){
         running = false;
     }
+
+    
 
 }
 
