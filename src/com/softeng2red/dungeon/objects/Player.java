@@ -248,6 +248,19 @@ public class Player extends GameObject {
                     x = tempObject.getX() + width;
                 }
             }
+            // Detecting collisions with Obstacles
+            if (tempObject.getId() == ObjectId.Bouncer) {
+                float y_diff = y - tempObject.getY();
+                float x_diff = x - tempObject.getX();
+                float dist = ((y_diff)*(y_diff) + (x_diff)*(x_diff));
+
+                if (dist>10000){
+                    tempObject.img_type = 0;
+                }else{
+                    tempObject.img_type = 1;
+                }
+
+            }
 
             // Detecting collisions with Disappearing Blocks
             if(Game.isAppear) {
