@@ -24,7 +24,7 @@ public class Handler {
         BufferedImageLoader loader = new BufferedImageLoader();
         // loading the level
         level = loader.loadImage("/level.png");//Loads the level image
-        level0 = loader.loadImage("/GameOverLevel.png");// Loads the Game Over image
+//        level0 = loader.loadImage("/GameOverLevel.png");// Loads the Game Over image
 
     }
 

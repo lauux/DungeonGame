@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 //This class loads the textures for all the objects from png images.
 public class Texture {
 
-    SpriteSheet bs, ps, beers, obs, vs, hs, gos, ss, bons;
+    SpriteSheet bs, ps, beers, obs, vs, hs, gos, ss, bons, starts;
     private BufferedImage block_sheet = null;
     private BufferedImage player_sheet = null;
     private BufferedImage health_sheet = null;
@@ -16,6 +16,7 @@ public class Texture {
     private BufferedImage spotlight_sheet = null;
     private BufferedImage gameover_sheet = null;
     private BufferedImage bouncer_sheet = null;
+    private BufferedImage start_sheet = null;
 
 
     public BufferedImage[] block = new BufferedImage[3];
@@ -27,6 +28,7 @@ public class Texture {
     public BufferedImage[] spotlight = new BufferedImage[4];
     public BufferedImage[] gameover = new BufferedImage[1];
     public BufferedImage[] bouncer = new BufferedImage[2];
+    public BufferedImage[] start_menu = new BufferedImage[1];
 
 
     //Loads the png images
@@ -41,6 +43,7 @@ public class Texture {
             spotlight_sheet = loader.loadImage("/Spolight_Sheet.png");
             gameover_sheet = loader.loadImage("/gameover.png");
             bouncer_sheet = loader.loadImage("/Bouncer_resting.png");
+            start_sheet = loader.loadImage("/Start_menu.png");
 
         }catch(Exception e){
             e.printStackTrace();
@@ -54,6 +57,7 @@ public class Texture {
         ss = new SpriteSheet(spotlight_sheet);
         gos = new SpriteSheet(gameover_sheet);
         bons = new SpriteSheet(bouncer_sheet);
+        starts = new SpriteSheet(start_sheet);
 
         getTextures();
     }
@@ -90,6 +94,7 @@ public class Texture {
         beer[0] = beers.grabImage(1,3,32,32);
         obstacle[0] = obs.grabImage(1,1,32,32);
         gameover[0] = gos.grabImage(1,1,960,800);
+        start_menu[0] = starts.grabImage(1,1,960,800);
 
 
     }

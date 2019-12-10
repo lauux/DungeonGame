@@ -20,12 +20,13 @@ public abstract class GameObject {
     protected boolean m_Down = false;
     public static int init_time = 120;
     public static int init_health = 1;
-    public int healthNum = init_health;
+    public static int healthNum = init_health;
     public int beerNum = 1;
     public int maxHealth  = 4;
     public int minHealth  = 0;
     public int img_type = 0;
-    public boolean isFinished = false;
+    public static boolean isFinished = false;
+
 
 
     public GameObject(float x, float y, ObjectId id) {
