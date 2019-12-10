@@ -44,7 +44,7 @@ public class Game extends Canvas implements Runnable {
         BufferedImageLoader loader = new BufferedImageLoader();
         // loading the level
         level = loader.loadImage("/level.png");//Loads the level image
-        city = loader.loadImage("/city.png");//Loads the background city image
+        city = loader.loadImage("/Overground_City_Scene_Big_improved.png");//Loads the background city image
 
         cam = new Camera(0,0);//Initializes Camera
         handler = new Handler(cam, game_timer);//Initializes Handler
@@ -131,11 +131,11 @@ public class Game extends Canvas implements Runnable {
                 cam.tick(tempObject);
                 GameObject healthObject = handler.object.get(0);
                 if (healthObject.healthNum == healthObject.minHealth) {
-                //Checking if the player has died
-                    GameOver();
+                    GameOver();//Checking if the player has died
                 }
             }
         }
+
         if (game_timer.getTime() <= 0)
             // Checking if the time has run up
             GameOver();
@@ -171,7 +171,7 @@ public class Game extends Canvas implements Runnable {
 
         g2d.translate(cam.getX(),cam.getY());
 
-        g.drawImage(city,0,0, 960, 2000, this);//Draws the background scene
+        g.drawImage(city,0,-180, 5000, 350, this);//Draws the background scene
         handler.render(g);//Draws all the objects
 
         g2d.translate(-cam.getX(),-cam.getY());//Adjusts camera so is aligned with player

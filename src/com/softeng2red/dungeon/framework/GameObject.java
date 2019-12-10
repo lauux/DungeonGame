@@ -24,6 +24,7 @@ public abstract class GameObject {
     public int beerNum = 1;
     public int maxHealth  = 4;
     public int minHealth  = 0;
+    public int img_type = 0;
     public boolean isFinished = false;
 
 
@@ -88,10 +89,10 @@ public abstract class GameObject {
         this.jumping = jumping;
     }
 
-
     public ObjectId getId() {
         return id;
     }
+
 
 
 }
