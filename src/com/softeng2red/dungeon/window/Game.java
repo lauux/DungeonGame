@@ -15,18 +15,6 @@ import java.util.Random;
 //This class Handles the main game logic
 public class Game extends Canvas implements Runnable {
 
-    public static boolean isAppear = true;
-    private boolean running = false;
-    private Thread thread;
-    public static int WIDTH, HEIGHT;
-    public BufferedImage level0 = null, level = null, city = null;
-
-    public static int init_time = 60;
-    public static int time = init_time;
-
-    public static int count;
-    public static int delay;
-
     // Object
     public Handler handler;
     Camera cam;
@@ -34,7 +22,17 @@ public class Game extends Canvas implements Runnable {
     static Texture tex;
     private HUD hud;
 
+    public static boolean isAppear = true;
+    private boolean running = false;
+    private Thread thread;
+    public static int WIDTH, HEIGHT;
+    public static int init_time = 60;
+    public static int time = init_time;
+    public static int count;
+    public static int delay;
+    public BufferedImage level0 = null, level = null, city = null;
     public static int LEVEL = 1;
+
 
     public void init() {
         WIDTH = getWidth();
@@ -65,7 +63,7 @@ public class Game extends Canvas implements Runnable {
             }
         }
         hud = new HUD((Health) healthObject, game_timer, (Finishing_Screen) finishingScreenObject);
-        this.addKeyListener(new KeyInput(handler, this, hud));//Adds key Listener
+        this.addKeyListener(new KeyInput(handler, this, hud, ObjectId.KeyInput));//Adds key Listener
         game_timer.init();
 
     }
@@ -78,6 +76,7 @@ public class Game extends Canvas implements Runnable {
         thread.start();
 
     }
+
     // Function which runs the FPS
     public void run() {
 
@@ -113,6 +112,7 @@ public class Game extends Canvas implements Runnable {
             }
         }
     }
+
     //Function which carries out the functions at each tick
     private void tick() {
         handler.tick();
@@ -142,7 +142,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     //Function which is called when player dies
-    private void GameOver() {
+    public void GameOver() {
         for (int i = 0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ObjectId.Player){
@@ -198,7 +198,8 @@ public class Game extends Canvas implements Runnable {
     public static void main(String args[]) {
         startGame();
     }
-    //Creates the new Window
+
+    // Creates the new Window and game object
     public static void startGame() {
         new Window(960, 800, "A Dungeon Game",  new Game());
     }

@@ -5,9 +5,6 @@ import com.softeng2red.dungeon.framework.ObjectId;
 import com.softeng2red.dungeon.window.*;
 import com.softeng2red.dungeon.framework.Texture;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.lang.annotation.AnnotationTypeMismatchException;
-import java.util.Calendar;
 import java.util.LinkedList;
 
 
@@ -19,18 +16,17 @@ public class Player extends GameObject {
     private final float MAX_SPEED = 10;
     private Handler handler;
     private Camera cam;
-    Texture tex = Game.getInstance();
-    private Animation playerWalkRight;
-    private Animation playerWalkLeft;
+    Texture tex = new Texture();
+    private Animation playerWalkRight  = new Animation(5,tex.player[0],tex.player[1],tex.player[2]);
+    private Animation playerWalkLeft = new Animation(5,tex.player[3],tex.player[4],tex.player[5]);  // 这两个 Animation 变量的初始化报空指针错
 
 
     public Player(float x, float y, Handler handler, Camera cam, ObjectId id) {
         super(x, y, id);
         this.handler = handler;
         this.cam = cam;
-
-        playerWalkRight = new Animation(5,tex.player[0],tex.player[1],tex.player[2]);
-        playerWalkLeft = new Animation(5,tex.player[3],tex.player[4],tex.player[5]);
+//        playerWalkRight = new Animation(5,tex.player[0],tex.player[1],tex.player[2]);
+//        playerWalkLeft = new Animation(5,tex.player[3],tex.player[4],tex.player[5]);  // 这两个 Animation 变量的初始化报空指针错
     }
     //Updates the players position each 'tick'
     public void tick(LinkedList<GameObject> object) {
@@ -49,7 +45,7 @@ public class Player extends GameObject {
         playerWalkLeft.runAnimation();
     }
     //This functions detects if the player has collided with any objects and responds acordingly
-    private void Collision(LinkedList<GameObject> object) {
+    public void Collision(LinkedList<GameObject> object) {
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
             // *need to refactor
@@ -309,4 +305,7 @@ public class Player extends GameObject {
         return new Rectangle((int)x, (int)y+5, (int)5, (int)height-10);
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
 }

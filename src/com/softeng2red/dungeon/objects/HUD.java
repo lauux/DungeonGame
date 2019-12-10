@@ -63,9 +63,12 @@ public class HUD {
     }
 
 
+    // when running is false, HUD stops display health and timer
     public void clear(){
         running = false;
     }
+
+    
 
 }
 
