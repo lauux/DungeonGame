@@ -58,3 +58,7 @@ This is a github repo for the coursework.
 - 06/12/19 <br>
     Updates the new version with finishing screen <br>
     by: Angus
+- 10/12/19 <br>
+    - Updates the new version with a start menu
+    - Fixes the bug of displaying hearts after restart <br>
+    by: Corey

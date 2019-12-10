@@ -14,5 +14,6 @@ public enum ObjectId {
     Health(),
     Disappearing_Block(),
     Finishing_Screen(),
-    KeyInput()
+    Bouncer(),
+    Start_Screen()
 }
