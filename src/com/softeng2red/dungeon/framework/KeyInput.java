@@ -70,16 +70,19 @@ public class KeyInput extends KeyAdapter {
                     Game.LEVEL = 0;
                     Game.isStarting = false;
                     handler.switchLevel();
+                    hud.init();
                 }
                 if (key == KeyEvent.VK_2) {
                     Game.LEVEL = 1;
                     Game.isStarting = false;
                     handler.switchLevel();
+                    hud.init();
                 }
                 if (key == KeyEvent.VK_3) {
                     Game.LEVEL = 2;
                     Game.isStarting = false;
                     handler.switchLevel();
+                    hud.init();
                 }
 
             }

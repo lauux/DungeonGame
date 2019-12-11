@@ -40,7 +40,7 @@ public class Moving_Block extends GameObject {
     }
     //Draws the moving block
     public void render(Graphics g) {
-        g.drawImage(tex.block[0],(int)x,(int)y,null);
+        g.drawImage(tex.block[2],(int)x,(int)y,null);
 
     }
     public Rectangle getBounds() {

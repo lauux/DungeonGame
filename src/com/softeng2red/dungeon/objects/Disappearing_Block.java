@@ -22,11 +22,11 @@ public class Disappearing_Block extends GameObject {
 
     public void render(Graphics g) {
         if(Game.isAppear) {
-            g.drawImage(tex.block[0], (int) x, (int) y, null);
+            g.drawImage(tex.block[3], (int) x, (int) y, null);
         }
         else {
-            g.setColor(Color.BLACK);
-            g.drawRect((int) x, (int) y, 32, 32);
+//            g.setColor(Color.BLACK);
+//            g.drawRect((int) x, (int) y, 32, 32);
         }
     }
 

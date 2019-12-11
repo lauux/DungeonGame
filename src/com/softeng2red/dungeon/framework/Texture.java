@@ -21,7 +21,7 @@ public class Texture {
     private BufferedImage key_sheet = null;
 
 
-    public BufferedImage[] block = new BufferedImage[3];
+    public BufferedImage[] block = new BufferedImage[4];
     public BufferedImage[] player = new BufferedImage[6];
     public BufferedImage[] beer = new BufferedImage[1];
     public BufferedImage[] obstacle = new BufferedImage[1];
@@ -74,7 +74,8 @@ public class Texture {
 
         block[0] = bs.grabImage(1,1,32,32); //dirt block
         block[1] = bs.grabImage(2,1,32,32); //grass block
-        block[2] = bs.grabImage(3,1,32,32); // Game Over block
+        block[2] = bs.grabImage(3,1,32,32); //moving block
+        block[3] = bs.grabImage(4,1,32,32); //disappearing block
 
         player[0] = ps.grabImage(1,1,25,41);//idle player
         player[1] = ps.grabImage(2,1,25,41);
