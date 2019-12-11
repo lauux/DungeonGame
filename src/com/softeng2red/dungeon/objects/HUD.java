@@ -63,7 +63,7 @@ public class HUD {
         running = true;
         healthObject.healthNum = GameObject.init_health;
         healthObject.beerNum = GameObject.init_beer;
-        timer.setTime(GameObject.init_time);
+        timer.init();
     }
 
 

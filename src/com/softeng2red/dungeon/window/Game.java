@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
     private Thread thread;
     public static int WIDTH, HEIGHT;
-    public BufferedImage level0 = null, level = null, city = null;
+    public BufferedImage city = null;
     public static int count;
     public static int delay;
     public static int LEVEL = 1;
@@ -41,8 +41,7 @@ public class Game extends Canvas implements Runnable {
 
         BufferedImageLoader loader = new BufferedImageLoader();
         // loading the level
-//        level0 = loader.loadImage("/Start_menu.png");//Loads the menu
-        level = loader.loadImage("/level.png");//Loads the level image
+//        level = loader.loadImage("/level1.png");//Loads the level image
         city = loader.loadImage("/Overground_City_Scene_Big_improved.png");//Loads the background city image
         cam = new Camera(0,0);//Initializes Camera
         handler = new Handler(cam, game_timer);//Initializes Handler
@@ -146,10 +145,12 @@ public class Game extends Canvas implements Runnable {
 
     public static void GameFinish() {
         isFinished = true;
+        game_timer.stop();
     }
 
     //Function which is called when player dies
     public void GameOver() {
+        game_timer.stop();
         handler.clearLevel();
         hud.clear();
         handler.addObject(new Game_Over(0,0, ObjectId.Game_Over));

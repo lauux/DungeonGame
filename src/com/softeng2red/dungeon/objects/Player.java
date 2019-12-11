@@ -170,8 +170,6 @@ public class Player extends GameObject {
                 if (getBounds().intersects(tempObject.getBounds()) || getBoundsTop().intersects(tempObject.getBounds()) || getBoundsLeft().intersects(tempObject.getBounds()) || getBoundsRight().intersects(tempObject.getBounds())) {
                     Game.GameFinish();
                     handler.clearLevel();
-//                    cam.setX(0);
-//                    cam.setY(0);
                     handler.addObject(new Finishing_Screen(0,0, ObjectId.Finishing_Screen));
                 }
             }

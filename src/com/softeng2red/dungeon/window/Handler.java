@@ -23,7 +23,7 @@ public class Handler {
 
         BufferedImageLoader loader = new BufferedImageLoader();
         // loading the level
-        level0 = loader.loadImage("/level0.png");
+        level0 = loader.loadImage("/levelblack.png");
         level = loader.loadImage("/level1.png");//Loads the level image
         level2 = loader.loadImage("/level2.png");//Loads the level image
         level3 = loader.loadImage("/level3.png");//Loads the level image
@@ -36,7 +36,7 @@ public class Handler {
             tempObject.tick(object);//Calls the tick function on all objects
         }
     }
-//Renders all objects
+    //Renders all objects
     public void render(Graphics g) {
 
         for (int i = 0; i < object.size(); i++) {
@@ -85,33 +85,31 @@ public class Handler {
 
             }
         }
-
-
     }
 
-
+    // Function to switch different levels
     public void switchLevel() {
         clearLevel();
-        System.out.println("Switching level...");
+        System.out.println("Switching the level...");
         switch (Game.LEVEL) {
             case -1:
-                System.out.println("Switched to the start menu.");
-                addObject(new Start_Screen(0,0,ObjectId.Start_Screen));
                 LoadImageLevel(level0);
+                addObject(new Start_Screen(0,0,ObjectId.Start_Screen));
                 Game.isStarting = true;
                 Game.isFinished = false;
+                System.out.println("Have switched to the start menu.");
                 break;
             case 0:
                 LoadImageLevel(level);
-                System.out.println("Switched to the level 1.");
+                System.out.println("Have switched to the level 1.");
                 break;
             case 1:
                 LoadImageLevel(level2);
-                System.out.println("Switched to the level 2.");
+                System.out.println("Have switched to the level 2.");
                 break;
             case 2:
                 LoadImageLevel(level3);
-                System.out.println("Switched to the level 3.");
+                System.out.println("Have switched to the level 3.");
                 break;
         }
         Game.LEVEL++;
