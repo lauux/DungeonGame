@@ -162,8 +162,6 @@ public class Player extends GameObject {
 
             if (tempObject.getId() == ObjectId.Player) {
 
-                //System.out.print(i);
-
             }
 
             // Detecting collisions with finishing_screen
@@ -241,11 +239,11 @@ public class Player extends GameObject {
             }
             // Detecting collisions with Obstacles
             if (tempObject.getId() == ObjectId.Bouncer) {
-                float y_diff = y - tempObject.getY();
-                float x_diff = x - tempObject.getX();
+                float y_diff = y - (tempObject.getY() + 200);
+                float x_diff = x - (tempObject.getX() + 400);
                 float dist = ((y_diff)*(y_diff) + (x_diff)*(x_diff));
 
-                if (dist>10000){
+                if (dist>14000){
                     tempObject.img_type = 0;
                 }else{
                     tempObject.img_type = 1;

@@ -24,8 +24,9 @@ public class Handler {
         BufferedImageLoader loader = new BufferedImageLoader();
         // loading the level
         level0 = loader.loadImage("/level0.png");
-        level = loader.loadImage("/level.png");//Loads the level image
-//        level0 = loader.loadImage("/GameOverLevel.png");// Loads the Game Over image
+        level = loader.loadImage("/level1.png");//Loads the level image
+        level2 = loader.loadImage("/level2.png");//Loads the level image
+        level3 = loader.loadImage("/level3.png");//Loads the level image
 
     }
 
@@ -78,7 +79,7 @@ public class Handler {
                 // Paint S (144,144,144), Disappearing Blocks
                 if (red ==  144 && blue == 144 & green == 144) addObject((new Disappearing_Block(xx*32,yy*32, ObjectId.Disappearing_Block)));
                 //Bouncer, orange on paint s
-                if (red == 252 && blue == 8 && green == 119) addObject((new Bouncer(xx*32, yy*32, ObjectId.Bouncer)));
+                if (red == 252 && blue == 8 && green == 119) addObject((new Bouncer(xx*32 - 500, yy*32 - 100, ObjectId.Bouncer)));
                 // Paint S (200, 200, 200), Finishing Screen
                 if (red ==  188 && blue == 188 & green == 188) addObject((new Key(xx*32,yy*32, ObjectId.Key)));
 
@@ -103,6 +104,14 @@ public class Handler {
             case 0:
                 LoadImageLevel(level);
                 System.out.println("Switched to the level 1.");
+                break;
+            case 1:
+                LoadImageLevel(level2);
+                System.out.println("Switched to the level 2.");
+                break;
+            case 2:
+                LoadImageLevel(level3);
+                System.out.println("Switched to the level 3.");
                 break;
         }
         Game.LEVEL++;

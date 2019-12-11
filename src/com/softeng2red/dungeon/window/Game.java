@@ -21,7 +21,6 @@ public class Game extends Canvas implements Runnable {
     public static Game_Timer game_timer;
     static Texture tex;
     private HUD hud;
-    public static Start_Screen start_screen;
 
     public static boolean isAppear = true;
     public static boolean isStarting = false;
@@ -51,6 +50,7 @@ public class Game extends Canvas implements Runnable {
         GameStarting();
 //        handler.addObject(new Health(650 ,20, handler,ObjectId.Health));//Initializes health
         game_timer = new Game_Timer(0,0, ObjectId.Game_Timer);//Initializes game timer
+
         // initialize HUD object
         GameObject healthObject = null;
         for(int i = 0; i<handler.object.size(); i++) {
