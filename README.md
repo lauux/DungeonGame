@@ -69,6 +69,7 @@ This is a github repo for the coursework.
     Updates the new version with another 2 levels <br>
     by: Matt
 - 11/12/19 <br>
-    Fixes the connection bug of finishing screen and start menu <br>
+    - Completes the connection of start menu with other levels
+    - Fixes the bug of timer <br>
     by: Corey
     
