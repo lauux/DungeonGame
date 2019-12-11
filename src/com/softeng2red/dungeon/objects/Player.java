@@ -124,9 +124,14 @@ public class Player extends GameObject {
             }
 
             if (tempObject.getId() == ObjectId.Game_Timer) {
+                // bottom
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    Game.game_timer.start();
+                    handler.object.remove(tempObject);
+                }
                 // top
                 if (getBoundsTop().intersects(tempObject.getBounds())) {
-                    Game.game_timer.start();
+                    Game.game_timer.stop();
                     handler.object.remove(tempObject);
                 }
             }
@@ -162,28 +167,14 @@ public class Player extends GameObject {
             }
 
             // Detecting collisions with finishing_screen
-            if (tempObject.getId() == ObjectId.Finishing_Screen) {
+            if (tempObject.getId() == ObjectId.Key) {
                 // top
-                if (getBoundsTop().intersects(tempObject.getBounds())) {
-                    tempObject.isFinished = true;
-                }
-                // bottom
-                if (getBounds().intersects(tempObject.getBounds())) {
-                    if (getBoundsTop().intersects(tempObject.getBounds())) {
-                        tempObject.isFinished = true;
-                    }
-                }
-                // right
-                if (getBoundsRight().intersects(tempObject.getBounds())) {
-                    if (getBoundsTop().intersects(tempObject.getBounds())) {
-                        tempObject.isFinished = true;
-                    }
-                }
-                // left
-                if (getBoundsLeft().intersects(tempObject.getBounds())) {
-                    if (getBoundsTop().intersects(tempObject.getBounds())) {
-                        tempObject.isFinished = true;
-                    }
+                if (getBounds().intersects(tempObject.getBounds()) || getBoundsTop().intersects(tempObject.getBounds()) || getBoundsLeft().intersects(tempObject.getBounds()) || getBoundsRight().intersects(tempObject.getBounds())) {
+                    Game.GameFinish();
+                    handler.clearLevel();
+//                    cam.setX(0);
+//                    cam.setY(0);
+                    handler.addObject(new Finishing_Screen(0,0, ObjectId.Finishing_Screen));
                 }
             }
 

@@ -14,5 +14,6 @@ public enum ObjectId {
     Disappearing_Block(),
     Finishing_Screen(),
     Bouncer(),
-    Start_Screen()
+    Start_Screen(),
+    Key()
 }

@@ -13,7 +13,7 @@ public class Handler {
 
     public LinkedList<GameObject> object = new LinkedList<GameObject>();
     private GameObject tempObject;
-    private BufferedImage level, level0;
+    private BufferedImage level0, level, level2, level3;
     public Camera cam;
     public Game_Timer timer;
 
@@ -23,6 +23,7 @@ public class Handler {
 
         BufferedImageLoader loader = new BufferedImageLoader();
         // loading the level
+        level0 = loader.loadImage("/level0.png");
         level = loader.loadImage("/level.png");//Loads the level image
 //        level0 = loader.loadImage("/GameOverLevel.png");// Loads the Game Over image
 
@@ -79,7 +80,7 @@ public class Handler {
                 //Bouncer, orange on paint s
                 if (red == 252 && blue == 8 && green == 119) addObject((new Bouncer(xx*32, yy*32, ObjectId.Bouncer)));
                 // Paint S (200, 200, 200), Finishing Screen
-                if (red ==  188 && blue == 188 & green == 188) addObject((new Finishing_Screen(xx*32,yy*32, ObjectId.Finishing_Screen)));
+                if (red ==  188 && blue == 188 & green == 188) addObject((new Key(xx*32,yy*32, ObjectId.Key)));
 
             }
         }
@@ -90,16 +91,26 @@ public class Handler {
 
     public void switchLevel() {
         clearLevel();
-        cam.setX(0);
+        System.out.println("Switching level...");
         switch (Game.LEVEL) {
+            case -1:
+                System.out.println("Switched to the start menu.");
+                addObject(new Start_Screen(0,0,ObjectId.Start_Screen));
+                LoadImageLevel(level0);
+                Game.isStarting = true;
+                Game.isFinished = false;
+                break;
             case 0:
                 LoadImageLevel(level);
+                System.out.println("Switched to the level 1.");
                 break;
         }
         Game.LEVEL++;
     }
 
     public void clearLevel() {
+        cam.setX(0);
+        cam.setY(0);
         object.clear();
     }
 

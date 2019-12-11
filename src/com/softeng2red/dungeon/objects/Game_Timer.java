@@ -11,7 +11,6 @@ import java.util.TimerTask;
 
 public class Game_Timer extends GameObject {
 
-    Texture tex;
     Timer timer = new Timer();
     public int time;
     private boolean running = false;

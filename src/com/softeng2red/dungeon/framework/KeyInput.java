@@ -49,12 +49,20 @@ public class KeyInput extends KeyAdapter {
 
             if (tempObject.getId() == ObjectId.Game_Over) {
                 if (key == KeyEvent.VK_SPACE) {
-                    Game.LEVEL = 0;
+                    Game.LEVEL = -1;
                     handler.switchLevel();
+                    handler.removeObject(tempObject);
                     hud.init();
-//                    Game_Timer.setTime(GameObject.init_time);
+                }
+            }
 
-
+            if (tempObject.getId() == ObjectId.Finishing_Screen) {
+                if (key == KeyEvent.VK_SPACE) {
+                    System.out.println("Switch to the menu");
+                    Game.LEVEL = -1;
+                    handler.switchLevel();
+                    handler.removeObject(tempObject);
+                    hud.init();
                 }
             }
 

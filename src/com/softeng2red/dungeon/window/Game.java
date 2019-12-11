@@ -21,13 +21,15 @@ public class Game extends Canvas implements Runnable {
     public static Game_Timer game_timer;
     static Texture tex;
     private HUD hud;
+    public static Start_Screen start_screen;
 
     public static boolean isAppear = true;
     public static boolean isStarting = false;
+    public static boolean isFinished = false;
     private boolean running = false;
     private Thread thread;
     public static int WIDTH, HEIGHT;
-    public BufferedImage start_menu = null, level = null, city = null;
+    public BufferedImage level0 = null, level = null, city = null;
     public static int count;
     public static int delay;
     public static int LEVEL = 1;
@@ -40,29 +42,24 @@ public class Game extends Canvas implements Runnable {
 
         BufferedImageLoader loader = new BufferedImageLoader();
         // loading the level
+//        level0 = loader.loadImage("/Start_menu.png");//Loads the menu
         level = loader.loadImage("/level.png");//Loads the level image
         city = loader.loadImage("/Overground_City_Scene_Big_improved.png");//Loads the background city image
-        start_menu = loader.loadImage("/Start_menu.png");
         cam = new Camera(0,0);//Initializes Camera
         handler = new Handler(cam, game_timer);//Initializes Handler
-        handler.LoadImageLevel(level);
-        isStarting();
-        handler.addObject(new Health(650 ,20, handler,ObjectId.Health));//Initializes health
+//        handler.LoadImageLevel(level0);
+        GameStarting();
+//        handler.addObject(new Health(650 ,20, handler,ObjectId.Health));//Initializes health
         game_timer = new Game_Timer(0,0, ObjectId.Game_Timer);//Initializes game timer
-
         // initialize HUD object
-        GameObject finishingScreenObject = null;
         GameObject healthObject = null;
         for(int i = 0; i<handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ObjectId.Health) {
                 healthObject = tempObject;
             }
-            if(tempObject.getId() == ObjectId.Finishing_Screen) {
-                finishingScreenObject = tempObject;
-            }
         }
-        hud = new HUD((Health) healthObject, game_timer, (Finishing_Screen) finishingScreenObject);
+        hud = new HUD((Health) healthObject, game_timer);
         this.addKeyListener(new KeyInput(handler, this, hud));//Adds key Listener
         game_timer.init();
 
@@ -140,25 +137,23 @@ public class Game extends Canvas implements Runnable {
     }
 
     //Function which is called when game begins
-    public void isStarting() {
+    public void GameStarting() {
         isStarting = true;
+        isFinished = false;
         handler.clearLevel();
-        handler.addObject(new Start_Screen(0,0, ObjectId.Start_Screen));
+        handler.addObject(new Start_Screen(0,0,ObjectId.Start_Screen));
+    }
 
+    public static void GameFinish() {
+        isFinished = true;
     }
 
     //Function which is called when player dies
     public void GameOver() {
-        for (int i = 0; i < handler.object.size(); i++){
-            GameObject tempObject = handler.object.get(i);
-            if(tempObject.getId() == ObjectId.Player){
-                handler.clearLevel();//Clears objects
-                hud.clear();//Clears HUD
-                //Displays GameOver
-                handler.addObject(new Game_Over(tempObject.getX()-((WIDTH)/2), tempObject.getY()-HEIGHT/2, ObjectId.Game_Over));
+        handler.clearLevel();
+        hud.clear();
+        handler.addObject(new Game_Over(0,0, ObjectId.Game_Over));
 
-            }
-        }
     }
 
     private void render() {

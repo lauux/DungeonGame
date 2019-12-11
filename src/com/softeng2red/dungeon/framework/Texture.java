@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 //This class loads the textures for all the objects from png images.
 public class Texture {
 
-    SpriteSheet bs, ps, beers, obs, vs, hs, gos, ss, bons, starts;
+    SpriteSheet bs, ps, beers, obs, vs, hs, gos, ss, bons, starts, fins, ks;
     private BufferedImage block_sheet = null;
     private BufferedImage player_sheet = null;
     private BufferedImage health_sheet = null;
@@ -17,6 +17,8 @@ public class Texture {
     private BufferedImage gameover_sheet = null;
     private BufferedImage bouncer_sheet = null;
     private BufferedImage start_sheet = null;
+    private BufferedImage fin_sheet = null;
+    private BufferedImage key_sheet = null;
 
 
     public BufferedImage[] block = new BufferedImage[3];
@@ -29,6 +31,8 @@ public class Texture {
     public BufferedImage[] gameover = new BufferedImage[1];
     public BufferedImage[] bouncer = new BufferedImage[2];
     public BufferedImage[] start_menu = new BufferedImage[1];
+    public BufferedImage[] finish = new BufferedImage[1];
+    public BufferedImage[] key = new BufferedImage[1];
 
 
     //Loads the png images
@@ -44,6 +48,8 @@ public class Texture {
             gameover_sheet = loader.loadImage("/gameover.png");
             bouncer_sheet = loader.loadImage("/Bouncer_resting.png");
             start_sheet = loader.loadImage("/Start_menu.png");
+            fin_sheet = loader.loadImage("/Finish_Screen_Scene.png");
+            key_sheet = loader.loadImage("/key.png");
 
         }catch(Exception e){
             e.printStackTrace();
@@ -58,6 +64,8 @@ public class Texture {
         gos = new SpriteSheet(gameover_sheet);
         bons = new SpriteSheet(bouncer_sheet);
         starts = new SpriteSheet(start_sheet);
+        fins = new SpriteSheet(fin_sheet);
+        ks = new SpriteSheet(key_sheet);
 
         getTextures();
     }
@@ -91,11 +99,12 @@ public class Texture {
         bouncer[0] = bons.grabImage(1,1,75,100);
         bouncer[1] = bons.grabImage(2,1,75,100);
 
+        key[0] = ks.grabImage(1,1,32,32);
         beer[0] = beers.grabImage(1,3,32,32);
         obstacle[0] = obs.grabImage(1,1,32,32);
         gameover[0] = gos.grabImage(1,1,960,800);
         start_menu[0] = starts.grabImage(1,1,960,800);
-
+        finish[0] = fins.grabImage(1,1,960,800);
 
     }
 }

@@ -16,16 +16,16 @@ public class HUD {
     Game_Timer timer;
     private Health healthObject;
     private Font font;
-    Finishing_Screen finishingScreen;
+//    Finishing_Screen finishingScreen;
     private boolean running = true;
     Texture tex = Game.getInstance();
 
-    public HUD (Health healthObject, Game_Timer timer, Finishing_Screen finishingScreen) {
+    public HUD (Health healthObject, Game_Timer timer) {
         try{
 
             this.healthObject = healthObject;
             this.timer = timer;
-            this.finishingScreen = finishingScreen;
+//            this.finishingScreen = finishingScreen;
             font = new Font("Arial", Font.PLAIN, 24);
 
         }
@@ -38,7 +38,7 @@ public class HUD {
 
     public void draw(Graphics2D g){
 
-        if(running && !Game.isStarting) {
+        if(running && !Game.isStarting && !Game.isFinished) {
 
             // Varies the size of the spotlight dependant on how much beer has been collected
             if (healthObject.beerNum == 1) g.drawImage(tex.spotlight[3], 0,0, Game.WIDTH + 20,Game.HEIGHT + 20, null);
@@ -57,14 +57,13 @@ public class HUD {
             g.drawString(String.format("Time: %03d", timer.getTime()), 37, 130); // Timer可以用
         }
 
-        if(finishingScreen.isFinished) {
-            g.drawImage(tex.gameover[0],0,0,null);
-        }
     }
 
     public void init() {
         running = true;
         healthObject.healthNum = GameObject.init_health;
+        healthObject.beerNum = GameObject.init_beer;
+        timer.setTime(GameObject.init_time);
     }
 
 
