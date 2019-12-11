@@ -3,6 +3,8 @@
 ### INTRO
 This is a github repo for the coursework.
 
+The final jar file is in the path"/out/artifacts/DungeonGameV2_jar?/Minor Adventures.jar"
+
 ### UPDATES
 - 06/11/19 <br>
     Updates the basic source code <br>
